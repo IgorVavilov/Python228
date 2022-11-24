@@ -3271,7 +3271,7 @@
 # print(re.findall(pattern, s))
 
 # 21.11.22
-import re
+# import re
 
 # s = 'Я ищу совпадения в 2023 годуб И я их найду в 2 счёта.'
 # reg = r'([0-9]+)\s(\D+)'
@@ -3316,7 +3316,99 @@ import re
 # print(re.sub(reg, r'\2-\1-\3', s))  # в данном случае имена скобок работать не будут, т.к.
 #                                     # имена находяться за пределами регулярного выражения.
 
-s = "google.com and google.ru"
-reg = r'(([a-z0-9-]{2,}\.)+[a-z]{2,4})'
-print(re.findall(reg, s))
-print(re.sub(reg, r'http://\1', s))
+# s = "google.com and google.ru"
+# reg = r'(([a-z0-9-]{2,}\.)+[a-z]{2,4})'
+# print(re.findall(reg, s))
+# print(re.sub(reg, r'http://\1', s))
+
+# 24.11.2022
+
+## РЕКУРСИЯ ##
+
+# Рекурсивная функция - это функция, которая вызывает сама себя.
+
+# def elevator(n):
+#     if n == 0:
+#         print('Вы в подвале')
+#         return
+#     print('=>', n)
+#     elevator(n - 1)
+#     print(n, end=' ')
+#
+# n1 = int(input("На каком Вы этаже: "))
+# elevator(n1)
+
+# def sum_list(lst):
+#     res = 0
+#     for i in lst:
+#         res = res + i
+#     return res
+#
+# print(sum_list([3, 4, 5, 6, 9]))
+
+# Тоже самое что и код выше
+# def sum_list(lst):
+#     if len(lst) == 1:
+#         print(lst, '=> lst[0]:', lst[0])
+#         return lst[0]
+#     else:
+#         print(lst, '=> lst[0]:', lst[0])
+#         return lst[0] + sum_list(lst[1:])   # 1 +
+#
+# print(sum_list([3, 4, 5, 6, 9]))
+
+# Преобразование систем счисления из десятичной в ...
+# def to_str(n, base):
+#     convert = '0123456789ABCDEF'
+#     if n < base:
+#         return convert[n]
+#     else:
+#         return to_str(n // base, base) + convert[n % base]
+#
+# print(to_str(252, 16))
+
+# Необходимо посчитать кол-во всех элементов
+# names = ['Adam', ['Bob', ['Chet', 'Cat'], 'Bard', 'Bert'], 'Alex', ['Bea', 'Bill'], 'Ann']
+
+# print(type(names[0]) == str)
+# print(type(names[0]) == list)
+#
+# print(isinstance(names[1], list))
+# print(names[1][1])
+# print(isinstance(names[1][1], list))
+# print(names[1][1][0])
+# print(isinstance(names[1][1][0], list))
+
+# def count(lst):
+#     cnt = 0
+#     for i in lst:
+#         if isinstance(i, list):
+#             cnt += count(i)
+#         else:
+#             cnt += 1
+#     return cnt
+#
+# print(count(names))
+
+# Сделать из вложенных списков один простой список
+# names = ['Adam', ['Bob', ['Chet', 'Cat'], 'Bard', 'Bert'], 'Alex', ['Bea', 'Bill'], 'Ann']
+#
+# def union(s):
+#     if not s:   # s == []
+#         return s
+#     if isinstance(s[0], list):
+#         return union(s[0]) + union(s[1:])
+#     return s[:1] + union(s[1:])
+#
+# print('Выпрямленный список:', union(names))
+
+# Удаление пробелов и знака \ из строки
+# def remove(text):
+#     if not text:
+#         return ""
+#     if text[0] == "\t" or text[0] == " ":
+#         return remove(text[1:])
+#     else:
+#         return text[0] + remove(text[1:])
+#
+# print(remove("  Hello\tWorld    "))
