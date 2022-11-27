@@ -3412,3 +3412,39 @@
 #         return text[0] + remove(text[1:])
 #
 # print(remove("  Hello\tWorld    "))
+
+# ДЗ от 24.11.2022
+# Вычислить количество отрицательных чисесл в списке.
+# С использованием рекурсии
+
+# nums = [-2, 3, 8, -11, -4, 6]
+# def count(lst):
+#     cnt = 0
+#     for i in lst:
+#         if i < 0:
+#             cnt += 1
+#             count(lst[1:])
+#         else:
+#             count(lst[1:])
+#
+#     return cnt
+#
+# print(count(nums))
+
+# Нерукурсисвный обход вложенного списка. Количество элементов в списке:
+names = ['Adam', ['Bob', ['Chet', 'Cat'], 'Bard', 'Bert'], 'Alex', ['Bea', 'Bill'], 'Ann']
+def count(names):
+    cnt = 0
+    for item in names:
+        if isinstance(item, list):
+            for item_1 in item:
+                if isinstance(item_1, list):
+                    for item_2 in item_1:
+                        cnt += 1
+                else:
+                    cnt += 1
+        else:
+            cnt += 1
+    return cnt
+
+print(count(names))
