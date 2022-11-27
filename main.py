@@ -3413,6 +3413,30 @@
 #
 # print(remove("  Hello\tWorld    "))
 
+# ДЗ от 22.11.2022
+# Найти цифры, рядом с которой нет цифр: 1X, Text ABC 123 A1B2C3
+import re
+
+# s = '1X, Text ABC 123 A1B2C3'
+# def findnum(s):
+#     reg = r'(?<!\d)\d(?!\d)'
+#     return re.findall(reg, s)
+# print(findnum(s))
+
+# Найти текст от #START# до #END#: text from #START# till #END#
+# s = "text from #START# till #END#"
+# def findtext(s):
+#     reg = r'(?<=#START#).*(?=#END#)'
+#     return re.findall(reg, s)
+# print(findtext(s))
+
+# Найти последовательность цифр, после которой идёт ровно одно подчеркивание: 12_34__56
+# s = '12_34__56'
+# def findnum(s):
+#     reg = r'\d+(?=_(?!_))'
+#     return re.findall(reg, s)
+# print(findnum(s))
+
 # ДЗ от 24.11.2022
 # Вычислить количество отрицательных чисесл в списке.
 # С использованием рекурсии
@@ -3432,19 +3456,19 @@
 # print(count(nums))
 
 # Нерукурсисвный обход вложенного списка. Количество элементов в списке:
-names = ['Adam', ['Bob', ['Chet', 'Cat'], 'Bard', 'Bert'], 'Alex', ['Bea', 'Bill'], 'Ann']
-def count(names):
-    cnt = 0
-    for item in names:
-        if isinstance(item, list):
-            for item_1 in item:
-                if isinstance(item_1, list):
-                    for item_2 in item_1:
-                        cnt += 1
-                else:
-                    cnt += 1
-        else:
-            cnt += 1
-    return cnt
-
-print(count(names))
+# names = ['Adam', ['Bob', ['Chet', 'Cat'], 'Bard', 'Bert'], 'Alex', ['Bea', 'Bill'], 'Ann']
+# def count(names):
+#     cnt = 0
+#     for item in names:
+#         if isinstance(item, list):
+#             for item_1 in item:
+#                 if isinstance(item_1, list):
+#                     for item_2 in item_1:
+#                         cnt += 1
+#                 else:
+#                     cnt += 1
+#         else:
+#             cnt += 1
+#     return cnt
+#
+# print(count(names))
