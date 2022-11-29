@@ -1931,8 +1931,6 @@
 #     for line in str_list:
 #         new_txt.write(line + '\n')
 
-
-
 # Задача 3
 # Дан список чисел. Превратите его в список квадратов этих чисел.
 
@@ -2007,8 +2005,6 @@
 #     print("yes")
 # else:
 #     print("NO")
-
-
 
 # Построить матрицу заданной размерности m*n и вывести ее на экран. Элементы матрицы формируются
 # случайно и имеют значение от 1 до 10 включительно.
@@ -2420,8 +2416,6 @@
 # finally:
 #     new_content.close()
 #     print('Весь контент из указанных файлов, записан в последний.')
-
-
 
 # дз 03.10.22
 
@@ -2945,7 +2939,7 @@
 # person.grades_list()
 
 # 06.11.22
-#Методы
+# Методы
 
 # class Point2D:
 #     def __init__(self, x, y):
@@ -3415,7 +3409,7 @@
 
 # ДЗ от 22.11.2022
 # Найти цифры, рядом с которой нет цифр: 1X, Text ABC 123 A1B2C3
-import re
+# import re
 
 # s = '1X, Text ABC 123 A1B2C3'
 # def findnum(s):
@@ -3472,3 +3466,84 @@ import re
 #     return cnt
 #
 # print(count(names))
+
+# 29.11.2022
+# f = open('text.txt', 'r')
+# print(f)
+# print(*f)
+# print(f.closed)
+# print(f.encoding)
+
+# f = open('text.txt', 'r')
+# print(f.read(3))
+# print(f.read())
+# f.close()
+
+# f = open('text.txt', 'r')
+# try:
+#     print(f.read())
+# finally:
+#     f.close()
+
+# f = open('text1.txt', 'r')
+# print(f.readline())
+# print(f.readline())
+# f.close()
+
+# f = open('text1.txt', 'r')
+# print(f.readlines())
+# f.close()
+
+# f = open('xyz.txt', 'w')
+# f.write('Привет\nWorld!')
+# f.close()
+#
+# f = open('xyz.txt', 'a')
+# # print(f.write('\nНовый текст'))
+# lines = ['\nline1', '\nline2']
+# f.writelines(lines)
+# f.close()
+
+# f = open('xyz.txt', 'w')
+# lst = [str(i) + str(i-1) for i in range(1, 20)]
+# print(lst)
+# # f.writelines(lst)
+# for index in lst:
+#     f.write(index + '\n')
+# f.close()
+
+# f = open('newtext.txt', 'w')
+# f.write('Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;')
+# f.close()
+
+# f = open('newtext.txt', 'r')
+# read_f = f.readlines()
+# print(read_f)
+# for i in range(len(read_f)):
+#     if read_f[i] == 'изменить строку в списке;\n':
+#         read_f[i] = 'Hello World!\n'
+#
+# f.close()
+# print(read_f)
+
+# f = open('newtext.txt', 'w')
+# f.writelines(read_f)
+# f.close()
+
+# f = open('newtext.txt', 'r')
+# print(f.read(3))
+# print(f.tell())
+# print(f.seek(1))
+# print(f.read(3))
+# f.close()
+
+# f = open('newtext.txt', 'r+')
+# print(f.write('I am learning Python'))
+# print(f.seek(3))
+# print(f.write('--new--'))
+# print(f.tell())
+# f.close()
+
+# f = open('text_bin.txt', 'wb')
+# print(f.write(b'I am learning Python'))
+# f.close()

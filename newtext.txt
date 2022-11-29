@@ -1,0 +1,3 @@
+I a--new--ing Pythonтовом файле;
+Hello World!
+записать список в файл;
