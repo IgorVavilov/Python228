@@ -3547,3 +3547,29 @@
 # f = open('text_bin.txt', 'wb')
 # print(f.write(b'I am learning Python'))
 # f.close()
+
+# ДЗ от 29.11.2022
+# Обмен местами двух строк в файле
+
+f = open('test.txt', 'w')
+f.write('Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;\n')
+f.close()
+
+f = open('test.txt', 'r')
+read_f = f.readlines()
+numline = len(read_f)-1
+print(read_f)
+print(f'Введите номера строк, которые хотите изменить (нумерация строк с "0" до {numline}')
+pos1 = int(input('pos1 => '))
+pos2 = int(input('pos2 => '))
+if len(read_f) > pos1 >= 0 and len(read_f) > pos2 >= 0 and pos1 != pos2:
+    read_f[pos1], read_f[pos2] = read_f[pos2], read_f[pos1]
+else:
+    print('Введите допустимые номера строк')
+print(read_f)
+f.close()
+
+f = open('test.txt', 'w')
+for item in read_f:
+    f.write(item)
+f.close()
