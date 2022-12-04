@@ -1611,17 +1611,23 @@
 #         if dictGame[gamer1_hod] == dictGame[gamer2_hod]:
 #             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. Ничья.')
 #         elif gamer1_hod == 1 and gamer2_hod == 2:
-#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. {gamerName_1} Выиграл')
+#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} -
+#             {dictGame[gamer2_hod]}. {gamerName_1} Выиграл')
 #         elif gamer1_hod == 2 and gamer2_hod == 3:
-#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. {gamerName_1} Выиграл')
+#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} -
+#             {dictGame[gamer2_hod]}. {gamerName_1} Выиграл')
 #         elif gamer1_hod == 1 and gamer2_hod == 3:
-#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. {gamerName_2} Выиграл')
+#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} -
+#             {dictGame[gamer2_hod]}. {gamerName_2} Выиграл')
 #         elif gamer1_hod == 2 and gamer2_hod == 1:
-#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. {gamerName_2} Выиграл')
+#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} -
+#             {dictGame[gamer2_hod]}. {gamerName_2} Выиграл')
 #         elif gamer1_hod == 3 and gamer2_hod == 2:
-#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. {gamerName_2} Выиграл')
+#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} -
+#             {dictGame[gamer2_hod]}. {gamerName_2} Выиграл')
 #         elif gamer1_hod == 3 and gamer2_hod == 1:
-#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} - {dictGame[gamer2_hod]}. {gamerName_1} Выиграл')
+#             print(f'У {gamerName_1} - {dictGame[gamer1_hod]}, а у {gamerName_2} -
+#             {dictGame[gamer2_hod]}. {gamerName_1} Выиграл')
 #
 #     hod = int(input("Введите 1 - продолжить игру, 2 - выйти из игры: "))
 
@@ -1816,17 +1822,20 @@
 # ■ Количество согласных букв;
 # ■ Количество цифр.
 
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'w+', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'w+',
+# encoding='utf-8') as new_txt:
 #     sym = len(txt.read().rstrip())
 #     new_txt.write(f'Количество символов: {sym}')
 #
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'a', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'a',
+# encoding='utf-8') as new_txt:
 #     s = 0
 #     for i in txt:
 #         s += 1
 #     new_txt.write(f'\nКоличество строк: {s}')
 #
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'a', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'a',
+# encoding='utf-8') as new_txt:
 #     sogl = 'цкнгшщзхъждлрпвфчсмтьб'
 #     glas = 'йуеыаоэяию'
 #     num = '0123456789'
@@ -1850,7 +1859,8 @@
 # Дан текстовый файл. Удалить из него последнюю
 # строку. Результат записать в другой файл.
 
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'w+', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\new_text.txt', 'w+',
+# encoding='utf-8') as new_txt:
 #     s = txt.readlines()
 #     s.pop(len(s)-1)
 #     for i in s:
@@ -1858,9 +1868,11 @@
 
 # дз 09.10.22
 
-# 14. Напишите программу на Python для объединения каждой строки из первого файла с соответствующей строкой во втором файле.
+# 14. Напишите программу на Python для объединения каждой строки из первого файла с соответствующей
+# строкой во втором файле.
 
-# with open('C:\\test\\file_1.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'r', encoding='utf-8') as new_txt, open('C:\\test\\file_3.txt', 'w+', encoding='utf-8') as split_txt:
+# with open('C:\\test\\file_1.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'r',
+# encoding='utf-8') as new_txt, open('C:\\test\\file_3.txt', 'w+', encoding='utf-8') as split_txt:
 #     file_1 = txt.read().split()
 #     file_2 = new_txt.read().split()
 #     file_split = []
@@ -1907,7 +1919,8 @@
 # в нем и, если оно присутствует, замените его на 200. Обновите список только
 # при первом вхождении числа 20.
 
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+',
+# encoding='utf-8') as new_txt:
 #
 #     num_list = txt.read().split()
 #     for i in range(len(num_list)):
@@ -1921,7 +1934,8 @@
 # Задача 2
 # Необходимо удалить пустые строки из списка строк.
 
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+',
+# encoding='utf-8') as new_txt:
 #
 #     str_list = txt.read().splitlines()
 #
@@ -1934,7 +1948,8 @@
 # Задача 3
 # Дан список чисел. Превратите его в список квадратов этих чисел.
 
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+',
+# encoding='utf-8') as new_txt:
 #
 #     num_list = txt.read().split()
 #
@@ -1949,7 +1964,8 @@
 # Задача 4
 # Дан список чисел, необходимо удалить все вхождения числа 20 из него.
 #
-# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+', encoding='utf-8') as new_txt:
+# with open('C:\\test\\text.txt', 'r', encoding='utf-8') as txt, open('C:\\test\\file_2.txt', 'w+',
+# encoding='utf-8') as new_txt:
 #
 #     num_list = txt.read().split()
 #     for i in num_list:
@@ -3218,7 +3234,8 @@
 
 # s = "int = 4, float = 4.0, double = 8.0f"
 # # reg = r"int\s*=\s*\d[.\w+]*|double\s*=\s*\d[.\w+]*"
-# # reg = r"(int|double)\s*=\s*\d[.\w+]*"   # в данном примере круглые скобки являются группирующими сохраняющими и возвращает
+# # reg = r"(int|double)\s*=\s*\d[.\w+]*"   # в данном примере круглые скобки являются группирующими
+# сохраняющими и возвращает
 #                                         # в данном случае только то что находится в скобках
 # reg = r"(?:int|double)\s*=\s*\d[.\w+]*" # в данном случае (?:) скобки не сохраняющие
 # print(re.findall(reg,s))
@@ -3299,8 +3316,8 @@
 # print(re.findall(reg, s))
 
 # s = "<p>Изображение <img src='bg.jpg'> - фон страницы</p>"
-# reg = r'<img\s+[^>]*src=(?P<q>[\'"])(.+)(?P=q)>'     # (?P<q>...)    (?P=q) - задаем и вызываем название круглой скибки,
-#                 # т.е. в данном примере перед регулярным выражением (?P<q>рег.выражение) задаем имя скобки <q>
+# reg = r'<img\s+[^>]*src=(?P<q>[\'"])(.+)(?P=q)>'     # (?P<q>...)    (?P=q) - задаем и вызываем название круглой
+#                 # скибки, т.е. в данном примере перед регулярным выражением (?P<q>рег.выражение) задаем имя скобки <q>
 #                 # и (?P=q) вызываем в нужном месте. Имена задаются буквами с цифрами, только цифрами называть нельзя.
 # print(re.findall(reg, s))
 
@@ -3317,7 +3334,7 @@
 
 # 24.11.2022
 
-## РЕКУРСИЯ ##
+# РЕКУРСИЯ #
 
 # Рекурсивная функция - это функция, которая вызывает сама себя.
 
@@ -3551,25 +3568,144 @@
 # ДЗ от 29.11.2022
 # Обмен местами двух строк в файле
 
-f = open('test.txt', 'w')
-f.write('Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;\n')
-f.close()
+# f = open('test.txt', 'w')
+# f.write('Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;\n')
+# f.close()
+#
+# f = open('test.txt', 'r')
+# read_f = f.readlines()
+# numline = len(read_f)-1
+# print(read_f)
+# print(f'Введите номера строк, которые хотите изменить (нумерация строк с "0" до {numline}')
+# pos1 = int(input('pos1 => '))
+# pos2 = int(input('pos2 => '))
+# if len(read_f) > pos1 >= 0 and len(read_f) > pos2 >= 0 and pos1 != pos2:
+#     read_f[pos1], read_f[pos2] = read_f[pos2], read_f[pos1]
+# else:
+#     print('Введите допустимые номера строк')
+# print(read_f)
+# f.close()
+#
+# f = open('test.txt', 'w')
+# for item in read_f:
+#     f.write(item)
+# f.close()
 
-f = open('test.txt', 'r')
-read_f = f.readlines()
-numline = len(read_f)-1
-print(read_f)
-print(f'Введите номера строк, которые хотите изменить (нумерация строк с "0" до {numline}')
-pos1 = int(input('pos1 => '))
-pos2 = int(input('pos2 => '))
-if len(read_f) > pos1 >= 0 and len(read_f) > pos2 >= 0 and pos1 != pos2:
-    read_f[pos1], read_f[pos2] = read_f[pos2], read_f[pos1]
-else:
-    print('Введите допустимые номера строк')
-print(read_f)
-f.close()
+# 04.12.2022
+# with open('text5.txt', 'w+') as f:
+#     print(f.write('0123456789'))
 
-f = open('test.txt', 'w')
-for item in read_f:
-    f.write(item)
-f.close()
+# with open('text1.txt', 'r') as f:
+#     for line in f:
+#         print(line[:6])
+
+# file_name = 'res.txt'
+# lst = (4.5, 58.3, 5.2, 12.3, 14.3, 5.6, 45.6)
+#
+# def get_line(lt):
+#     lt = list(map(str, lt))
+#     return ' '.join(lt)
+#
+# with open(file_name, 'w') as f:
+#     f.write(get_line(lst))
+#
+# print(get_line(lst))
+#
+# with open(file_name, 'r') as f:
+#     nums = f.read()
+#
+# print(nums)
+# lst = list(map(float, nums.split(' ')))
+# print(lst)
+# print(len(lst))
+# print(sum(lst))
+
+# def longest_words(file):
+#     with open(file, 'r', encoding='utf-8') as text:
+#         w = text.read().split()
+#         max_length = len(max(w, key=len))
+#         res = [word for word in w if len(word) == max_length]
+#         if len(res) == 1:
+#             return res[0]
+#         return res
+#
+#
+# file_name = "res.txt"
+# print(longest_words(file_name))
+
+# --РАБОТА С НЕСКОЛЬКИМИ ФАЙЛАМИ--
+
+# text = 'строка №1\nстрока №2\nстрока №3\nстрока №4\nстрока №5\nстрока №6\nстрока №7\nстрока №8\nстрока №9\n'
+#
+# with open('one.txt', 'w') as f:
+#     f.write(text)
+
+# read_file = 'one.txt'
+# write_file = 'two.txt'
+# with open(read_file, 'r') as fr, open(write_file, 'w') as fw:
+#     for line in fr:
+#         line = line.replace('строка', 'Линия -')
+#         fw.write(line)
+
+# МОДУЛЬ OS И OS.PATH
+
+import os
+
+# print('Текущая директория: ', os.getcwd()) #C:\Users\sonda\PycharmProjects\Lesson9_10\pythonProject
+#
+# print(os.listdir()) # возвращает список директорий и файлов, находящихся в текущей директории
+# os.mkdir('testFolder') # создание директории
+# os.makedirs('testFolder1/testFolder2') # создает директории в поддиректрии. Если родительских директорий нет,
+#                                         # то создаются и родительские директории
+# os.remove('xyz.txt') # удаление файлов
+
+# os.rename('nested1', 'test') # переименовывает файл или директорию
+# os.rename('test.txt', 'testFolder/test1.txt') # переименовывает файл и перемещает в другую существующую директорию
+# os.renames('text.txt', 'test1/test1.txt') # переименовывает файли и перемещает в другую директорию, если директория
+#                                         # не существует, то он будет создана
+
+# os.rmdir() # удаляет только пустую директорию
+
+# for root, dirs, files in os.walk("testFolder1", topdown=True): # возвращает имена директорий в виде дерева
+#         # директорий. Для каждой директории возвращает кортеж из трех элементов (путь к директории (root),
+#         # список директорий (dits), список файлов (files))
+#     print('Root: ', root)
+#     print(' Subdirs: ', dirs)
+#     print('     Files: ', files)
+
+# def remove_empty_dirs(root_tree):
+#     for root, dirs, files in os.walk(root_tree, topdown=True):
+#         if not os.listdir(root):
+#             os.rmdir(root)
+#             print(f'Директория {root} удалена.')
+#
+#
+# remove_empty_dirs('testFolder1')
+
+# print(os.path.split(r'C:\Users\sonda\PycharmProjects\Lesson9_10\pythonProject\testFolder1\testFolder1\test1.txt')) # разбивает
+# # путь на картеж (head, tail) tail - последний компонент пути, head - все остальное
+#
+# print(os.path.dirname(r'C:\Users\sonda\PycharmProjects\Lesson9_10\pythonProject\testFolder1\testFolder1\test1.txt')) # возвращает имя директори и его путь
+#
+# print(os.path.basename(r'C:\Users\sonda\PycharmProjects\Lesson9_10\pythonProject\testFolder1\testFolder1\test1.txt')) # возвращает имя файла
+
+# print(os.path.join('files', r'C:\pythonProject1', 'files', 'dif', 'three.txt'))
+
+# dirs = ['Work/F1', 'Work/F2/F21']
+# for i in dirs:
+#     os.makedirs(i)
+
+# files = {'Work': ['w.txt'],
+#          'Work/F1': ['f11.txt', 'f12.txt', 'f13.txt'],
+#          'Work/F2/F21': ['f211.txt', 'f212.txt']
+#         }
+#
+# for d, file in files.items():
+#     for f in file:
+#         file_path = os.path.join(d, f)
+#         open(file_path, 'w').close()
+
+file_text = ['Work/w.txt', 'Work/F1/f12.txt', 'Work/F2/F21/f211.txt', 'Work/F2/F21/f212.txt']
+for file in file_text:
+    with open(file, 'w') as f:
+        f.write(f'Текс для файла по пути {file}.')
