@@ -3649,7 +3649,7 @@
 
 # МОДУЛЬ OS И OS.PATH
 
-import os
+# import os
 
 # print('Текущая директория: ', os.getcwd()) #C:\Users\sonda\PycharmProjects\Lesson9_10\pythonProject
 #
@@ -3704,8 +3704,151 @@ import os
 #     for f in file:
 #         file_path = os.path.join(d, f)
 #         open(file_path, 'w').close()
+#
+# file_text = ['Work/w.txt', 'Work/F1/f12.txt', 'Work/F2/F21/f211.txt', 'Work/F2/F21/f212.txt']
+# for file in file_text:
+#     with open(file, 'w') as f:
+#         f.write(f'Текс для файла по пути {file}.')
+#
+# def print_tree(root, td):
+#     print(f'Обход {root} {"сверху вниз" if td else "снизу вверх"}')
+#     for root, dirs, fl in os.walk(root, topdown=td):
+#         print(root)
+#         print("  ", dirs)
+#         print("      ", fl)
+#
+#     print("-" * 50)
+#
+#
+# print_tree('Work', td=False)
+# print_tree('Work', td=True)
 
-file_text = ['Work/w.txt', 'Work/F1/f12.txt', 'Work/F2/F21/f211.txt', 'Work/F2/F21/f212.txt']
-for file in file_text:
-    with open(file, 'w') as f:
-        f.write(f'Текс для файла по пути {file}.')
+# --06.12.2022--
+
+# print(os.path.exists(r'C:\Users\sonda\PycharmProjects\Lesson9_10\pythonProject\Work')) # проверяет наличие
+#                                                                            # файла или папки по указанному пути
+# import time
+#
+# path = 'one.txt'
+# print(os.path.getatime(path)) # возвращает время последнего доступа к файлу в секундах
+# print(os.path.getctime(path)) # возвращает время создания файла в секундах
+# print(os.path.getmtime(path)) # возвращает время последнего изменения файла в секундах
+# print(os.path.getsize(path)) # возвращает размер файла в байтах
+#
+# size = round(os.path.getsize(path) / 1024, 2)
+# print(size)
+# t = os.path.getctime(path)
+# print(time.strftime("%d.%m.%Y, %H.%M.%S", time.localtime(t)))
+
+# print(os.path.isfile(r'Work/w.txt')) # возвращает True, если путь является файлом
+# print(os.path.isdir(r'Work/w.txt')) # возвращает True, если путь является папкой
+
+# --КЛАССЫ--
+# у класса есть свойства (поля, переменная)
+# class Point:
+#     """Класс для представления координат точек на плоскости"""
+#     x = 1
+#     y = 1
+
+
+# print(Point.__doc__)
+# print(Point.__name__)
+# print(dir(Point))
+
+# p1 = Point()
+# p2 = Point()
+# print(p1.x) # выводим значение переменной 'x', экземпляра класса
+#
+# p1.x = 100 # присваеваем переменной 'x' новое значение, экземпляра класса
+# p2.x = 200
+#
+# print(p1.x)
+# print(p2.x)
+# print(Point().x)
+#
+# print(id(p1))
+# print(id(p2))
+# print(id(Point))
+
+# class Point:
+#     x = 1
+#     y = 1
+#
+# p1 = Point()
+# p1.x = 5
+# p1.y = 10
+# p1.z = 20
+# print(p1.x, p1.y)
+# print(p1.__dict__) # __dict__ - отображает свойства класса. У экземпляра класса __dict__ пустой по умаолчанию.
+
+# class Point:
+#     x = 1
+#     y = 1
+#
+#     def set_coord(self):
+#         print(self.__dict__)
+
+# Методы это функции внутри класса. Атрибуты класса - это методы и свойства класса
+# Методы могут вызываться только у экземпляра класса.
+
+#
+# p1 = Point()
+# print(p1.x)
+# p1.x = 5
+# p1.y = 10
+# p1.set_coord()
+# Point.set_coord(p1)
+# p2 = Point()
+# p2.x = 2
+# p2.y = 6
+# p2.set_coord()
+
+# class Point:
+#     x = 1
+#     y = 1
+#
+#     def set_coord(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# p1 = Point()
+# p1.set_coord(5, 10)
+# print(p1.__dict__)
+
+class Human:
+    name = 'name'
+    birthday = '00.00.0000'
+    phone = '000-00-00'
+    country = 'counrty'
+    city = 'city'
+    address = 'street, house'
+
+    def print_info(self):
+        print(' Персональные данные '.center(40, "*"))
+        print(f'Имя: {self.name}\nДата рождения: {self.birthday}\nНомер телефона: {self.phone}\n'
+              f'Страна: {self.country}\nГород: {self.city}\nДомашний адрес: {self.address}')
+
+    def input_info(self, first_name, birthday, phone, country, city, address):
+        self.name = first_name
+        self.birthday = birthday
+        self.phone = phone
+        self.country = country
+        self.city = city
+        self.address = address
+
+    def set_name(self, name):   # установить имя
+        if isinstance(name, str):
+            self.name = name
+
+    def get_name(self): # получить имя
+        return self.name
+
+h1 = Human()
+h1.print_info()
+
+h1.input_info('Юля', '23.05.1986', '45-46-98', 'Россия', 'Москва', 'Чистопрудный бульвар, 1А')
+h1.print_info()
+h1.set_name('Алефтина')
+h1.print_info()
+print(h1.get_name())
