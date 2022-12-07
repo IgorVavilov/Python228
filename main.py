@@ -3816,39 +3816,156 @@
 # p1.set_coord(5, 10)
 # print(p1.__dict__)
 
-class Human:
-    name = 'name'
-    birthday = '00.00.0000'
-    phone = '000-00-00'
-    country = 'counrty'
-    city = 'city'
-    address = 'street, house'
+# class Human:
+#     name = 'name'
+#     birthday = '00.00.0000'
+#     phone = '000-00-00'
+#     country = 'counrty'
+#     city = 'city'
+#     address = 'street, house'
+#
+#     def print_info(self):
+#         print(' Персональные данные '.center(40, "*"))
+#         print(f'Имя: {self.name}\nДата рождения: {self.birthday}\nНомер телефона: {self.phone}\n'
+#               f'Страна: {self.country}\nГород: {self.city}\nДомашний адрес: {self.address}')
+#
+#     def input_info(self, first_name, birthday, phone, country, city, address):
+#         self.name = first_name
+#         self.birthday = birthday
+#         self.phone = phone
+#         self.country = country
+#         self.city = city
+#         self.address = address
+#
+#     def set_name(self, name):   # установить имя
+#         if isinstance(name, str):
+#             self.name = name
+#
+#     def get_name(self): # получить имя
+#         return self.name
+#
+# # ДЗ от 06.12.2022
+#
+#     def set_birthday(self, birthday):
+#         self.birthday = birthday
+#
+#     def get_birthday(self):
+#         return self.birthday
+#
+#     def set_phone(self, phone):
+#         self.phone = phone
+#
+#     def get_phone(self):
+#         return self.phone
+#
+#     def set_country(self, country):
+#         self.country = country
+#
+#     def get_country(self):
+#         return self.country
+#
+#     def set_city(self, city):
+#         self.city = city
+#
+#     def get_city(self):
+#         return self.city
+#
+#     def set_address(self, address):
+#         self.address = address
+#
+#     def get_address(self):
+#         return self.address
+#
+# h1 = Human()
+# h1.print_info()
+#
+# h1.input_info('Юля', '23.05.1986', '45-46-98', 'Россия', 'Москва', 'Чистопрудный бульвар, 1А')
+# h1.print_info()
+# h1.set_name('Алефтина')
+# h1.print_info()
+# print(h1.get_name())
+# h1.set_city("Питер")
+# print(h1.get_city())
 
-    def print_info(self):
-        print(' Персональные данные '.center(40, "*"))
-        print(f'Имя: {self.name}\nДата рождения: {self.birthday}\nНомер телефона: {self.phone}\n'
-              f'Страна: {self.country}\nГород: {self.city}\nДомашний адрес: {self.address}')
+# Реализуйте класс "Книга". Необходимо хранить в полях класса: название книги, год выпуска, издателя, жанр,
+# автора, цену. Реализуйте методы класса для ввода данных, вывода данных, реализуйте доступ к отдельным полям
+# через методы класса.
 
-    def input_info(self, first_name, birthday, phone, country, city, address):
-        self.name = first_name
-        self.birthday = birthday
-        self.phone = phone
-        self.country = country
-        self.city = city
-        self.address = address
+# class Book:
+#     title = "KGBT+"
+#     year = "2022"
+#     publisher = "Эксмо"
+#     genre = "проза"
+#     author = "Виктор Пелевин"
+#     price = "945"
+#
+#     def print_info(self):
+#         print('=' * 50)
+#         print(f'Название книги: {self.title}\nГод выпуска: {self.year}\nИздатель: {self.publisher}\n'
+#               f'Жанр: {self.genre}\nАвтор: {self.author}\nЦена: {self.price}')
+#
+#     def input_info(self, title, year, publisher, genre, author, price):
+#         self.title = title
+#         self.year = year
+#         self.publisher = publisher
+#         self.genre = genre
+#         self.author = author
+#         self.price = price
+#
+#     def set_title(self, title):
+#         self.title = title
+#
+#     def get_title(self):
+#         return self.title
+#
+#     def set_year(self, year):
+#         self.year = year
+#
+#     def get_year(self):
+#         return self.year
+#
+#     def set_publisher(self, publisher):
+#         self.publisher = publisher
+#
+#     def get_publisher(self):
+#         return self.publisher
+#
+#     def set_genre(self, genre):
+#         self.genre = genre
+#
+#     def get_genre(self):
+#         return self.genre
+#
+#     def set_author(self, author):
+#         self.author = author
+#
+#     def get_author(self):
+#         return self.author
+#
+#     def set_price(self, price):
+#         self.price = price
+#
+#     def get_price(self):
+#         return self.price
+#
+#
+# b1 = Book()
+# b1.print_info()
+# b1.input_info('Боги и Чудовища', '2022', 'АСТ', 'Фэнтези', 'Шелби Махёрин', '865')
+# b1.print_info()
+# b1.set_price('999')
+# b1.print_info()
+# print(b1.get_price())
 
-    def set_name(self, name):   # установить имя
-        if isinstance(name, str):
-            self.name = name
+# ДЗ от 01.12.2022
 
-    def get_name(self): # получить имя
-        return self.name
-
-h1 = Human()
-h1.print_info()
-
-h1.input_info('Юля', '23.05.1986', '45-46-98', 'Россия', 'Москва', 'Чистопрудный бульвар, 1А')
-h1.print_info()
-h1.set_name('Алефтина')
-h1.print_info()
-print(h1.get_name())
+# with open('one.txt', 'r') as f_one:
+#     list_one = f_one.readlines()
+#
+# with open('two.txt', 'r') as f_two:
+#     list_two = f_two.readlines()
+#
+# with open('three.txt', 'w') as f_three:
+#     list_three = list_one + list_two
+#     for item in list_three:
+#         f_three.write(item)
