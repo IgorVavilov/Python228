@@ -3969,3 +3969,192 @@
 #     list_three = list_one + list_two
 #     for item in list_three:
 #         f_three.write(item)
+
+# 08/12/2022
+
+# class Person:
+#     skill = 10
+#
+#     def __init__(self, name, surname): # инициализатор, отрабатывает в момент, когда создаем экземпляр класса
+#         self.name = name
+#         self.surname = surname
+#
+#     def print_info(self):
+#         print('Данные сотрудника: ', self.name, self.surname)
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print('Квалификация сотрудника: ', self.skill, '\n')
+#
+# p1 = Person('Viktor', 'Reznik')
+# p1.print_info()
+# p1.add_skill(3)
+#
+# p2 = Person('Anna', 'Dolgih')
+# p2.print_info()
+# p2.add_skill(2)
+
+# class Point:
+#     # def __new__(cls, *args, **kwargs): # конструктор класса, обычно не используется при создании классов
+#     #     print('Конструктор')
+#     #     return super().__new__(cls)
+#
+#     def __init__(self, x, y):
+#         print('Инициализатор')
+#         self.x = x
+#         self.y = y
+#
+#     def __del__(self):  # удаление экземпляра класса, обычно не используется
+#         print('Удаление экземпляра', self.__class__.__name__)
+#
+#     def print_coord(self):
+#         print(f'x: {self.x}, y: {self.y}')
+#
+# p1 = Point(5, 10)
+# p1.print_coord()
+# print(id(p1))
+#
+# p2 = Point(2, 7)
+# p2.print_coord()
+# print(id(p2))
+
+
+# class Point:
+#     count = 0
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.count += 1
+#
+# p1 = Point(5, 10)
+# print(p1.count)
+# p2 = Point(7, 2)
+# print(p2.count)
+# p3 = Point(3, 6)
+# print(p2.count)
+
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print('Инициализация робота: ', self.name)
+#         Robot.k += 1
+#
+#     def __del__(self):
+#         print(self.name, 'выключается!')
+#         Robot.k -= 1
+#         if Robot.k == 0:
+#             print(self.name, 'был последним')
+#             # print('Численость роботов', Robot.k)
+#         else:
+#             print('Работающих роботов осталось:', Robot.k)
+#
+#     def say_hi(self):
+#         print('Приветствую! Меня зовут', self.name)
+#
+#
+# droid1 = Robot("R2-D1")
+# droid1.say_hi()
+# print('Численность роботов:', Robot.k)
+#
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# print('Численность роботов:', Robot.k)
+#
+# print('\nЗдесь роботы могут проделать какую-то работу\n')
+# print('Роботы закончили свою работу. Давайте их выключим.')
+# del droid1
+# del droid2
+# print('Численность роботов:', Robot.k)
+
+# --ИНКАПСУЛЯЦИЯ--
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def __check_value(z):
+#         if isinstance(z, int) or isinstance(z, float):
+#             return True
+#         return False
+#
+#     def set_coord(self, x, y):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print('Координаты должны быть числами.')
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+# p1 = Point('5', 10)
+# print(p1.get_coord())
+# p1.set_coord(3, 3.6)
+# print(p1.get_coord())
+# p1.__x = 100
+# p1.__y = 'abc'
+# # print(p1.x, p1.y)
+# print(p1.__dict__)
+
+# Модификаторы доступа:
+# public (self.x) -
+# protected (self._x) - используется при наследовании
+# privat (self.__x)
+
+# ДЗ от 08.12.2022
+# Создать класс Rectangle, описывающий прямоугольник.
+# В классе должны быть все необходимые методы, а так же методы вычисления площади,
+# периметра и диагонали, и метод, который рисует прямоугольник.
+
+class Rectangle:
+
+    def __init__(self, dlinna, shirina):
+        self.__dlinna = self.__shirina = 0
+        if Rectangle.__check_value(shirina) and Rectangle.__check_value(dlinna):
+            self.__dlinna = dlinna
+            self.__shirina = shirina
+
+    def __check_value(z):
+        if isinstance(z, int) or isinstance(z, float):
+            return True
+        return False
+
+    def set_param(self, dlinna, shirina):
+        if Rectangle.__check_value(dlinna) and Rectangle.__check_value(shirina):
+            self.__dlinna = dlinna
+            self.__shirina = shirina
+        else:
+            print('Параметры прямоугольника должны быть числовыми.')
+
+    def get_param(self):
+        print('Длинна прямоугольника:', self.__dlinna)
+        print('Ширина прямоугольника:', self.__shirina)
+
+    def ploshad(self):
+        print('Площадь прямоугольника:', self.__dlinna * self.__shirina)
+
+    def perimetr(self):
+        print('Периметр прямоугольника:', (self.__dlinna * 2) + (self.__shirina * 2))
+
+    def gipotenuza(self):
+        c = ((self.__dlinna ** 2) + (self.__shirina ** 2)) ** 0.5
+        print('Гипотенуза прямоугольника:', round(c, 2))
+
+    def drow_rectangle(self):
+        for i in range(self.__dlinna):
+            print('*' * self.__shirina)
+
+r1 = Rectangle('8', 10)
+r1.get_param()
+r1.set_param(3, 9)
+r1.get_param()
+r1.ploshad()
+r1.perimetr()
+r1.gipotenuza()
+r1.drow_rectangle()
