@@ -1,4 +1,3 @@
-
 # text = " Привет мир! "
 # print(text)
 # print(text[1])
@@ -4112,49 +4111,324 @@
 # В классе должны быть все необходимые методы, а так же методы вычисления площади,
 # периметра и диагонали, и метод, который рисует прямоугольник.
 
-class Rectangle:
+# class Rectangle:
+#
+#     def __init__(self, dlinna, shirina):
+#         self.__dlinna = self.__shirina = 0
+#         if Rectangle.__check_value(shirina) and Rectangle.__check_value(dlinna):
+#             self.__dlinna = dlinna
+#             self.__shirina = shirina
+#
+#     def __check_value(z):
+#         if isinstance(z, int) or isinstance(z, float):
+#             return True
+#         return False
+#
+#     def set_param(self, dlinna, shirina):
+#         if Rectangle.__check_value(dlinna) and Rectangle.__check_value(shirina):
+#             self.__dlinna = dlinna
+#             self.__shirina = shirina
+#         else:
+#             print('Параметры прямоугольника должны быть числовыми.')
+#
+#     def get_param(self):
+#         print('Длинна прямоугольника:', self.__dlinna)
+#         print('Ширина прямоугольника:', self.__shirina)
+#
+#     def ploshad(self):
+#         print('Площадь прямоугольника:', self.__dlinna * self.__shirina)
+#
+#     def perimetr(self):
+#         print('Периметр прямоугольника:', (self.__dlinna * 2) + (self.__shirina * 2))
+#
+#     def gipotenuza(self):
+#         c = ((self.__dlinna ** 2) + (self.__shirina ** 2)) ** 0.5
+#         print('Гипотенуза прямоугольника:', round(c, 2))
+#
+#     def drow_rectangle(self):
+#         for i in range(self.__dlinna):
+#             print('*' * self.__shirina)
+#
+# r1 = Rectangle('8', 10)
+# r1.get_param()
+# r1.set_param(3, 9)
+# r1.get_param()
+# r1.ploshad()
+# r1.perimetr()
+# r1.gipotenuza()
+# r1.drow_rectangle()
 
-    def __init__(self, dlinna, shirina):
-        self.__dlinna = self.__shirina = 0
-        if Rectangle.__check_value(shirina) and Rectangle.__check_value(dlinna):
-            self.__dlinna = dlinna
-            self.__shirina = shirina
+# ---13.12.2022---
 
-    def __check_value(z):
-        if isinstance(z, int) or isinstance(z, float):
-            return True
-        return False
+# class Point:
+#     __slots__ = ['__x', '__y', 'z'] #ограничиваем свойства, которые используются в классе. И не можем добовлять из вне.
+#     def __init__(self, x, y):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def __check_value(z):
+#         if isinstance(z, int) or isinstance(z, float):
+#             return True
+#         return False
+#
+#     def set_coord(self, x, y):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print('Координаты должны быть числами.')
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
 
-    def set_param(self, dlinna, shirina):
-        if Rectangle.__check_value(dlinna) and Rectangle.__check_value(shirina):
-            self.__dlinna = dlinna
-            self.__shirina = shirina
-        else:
-            print('Параметры прямоугольника должны быть числовыми.')
+# p1 = Point('5', 10)
+# p1.z = 15
+# print(p1.z)
+# print(p1.get_coord())
+# p1.set_coord(3, 3.6)
+# print(p1.get_coord())
+# p1.__x = 100
+# p1.__y = 'abc'
+# # print(p1.x, p1.y)
+# print(p1.__dict__)
 
-    def get_param(self):
-        print('Длинна прямоугольника:', self.__dlinna)
-        print('Ширина прямоугольника:', self.__shirina)
+# class Point:
+#     def __init__(self, x = 0, y = 0):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __set_x(self, x):
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     def __get_x(self):
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     def __del_x(self):
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     x = property(__get_x, __set_x, __del_x) # свойства прописываются строго в такой последовательности.
+#
+# p1 = Point(5, 10)
+# p1.x = 3
+# print(p1.x)
+# del p1.x
 
-    def ploshad(self):
-        print('Площадь прямоугольника:', self.__dlinna * self.__shirina)
+# -- нижний код повторяет код прописанный выше---
 
-    def perimetr(self):
-        print('Периметр прямоугольника:', (self.__dlinna * 2) + (self.__shirina * 2))
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     @property  # декоратор
+#     def x(self):  # __get_x
+#         print("Вызов __get_x")
+#         return self.__x
+#
+#     @x.setter
+#     def x(self, x):  # __set_x
+#         print("Вызов __set_x")
+#         self.__x = x
+#
+#     @x.deleter
+#     def x(self):  # __del_x
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     # x = property(__get_x, __set_x, __del_x) # свойства прописываются строго в такой последовательности.
+#
+#
+# p1 = Point(5, 10)
+# p1.x = 3
+# print(p1.x)
+# del p1.x
 
-    def gipotenuza(self):
-        c = ((self.__dlinna ** 2) + (self.__shirina ** 2)) ** 0.5
-        print('Гипотенуза прямоугольника:', round(c, 2))
+# class KgToPounds:
+#     def __init__(self, kg):
+#         self.__kg = kg
+#
+#     @property
+#     def kg(self):
+#         return self.__kg
+#
+#     @kg.setter
+#     def kg(self, new_kg):
+#         if isinstance(new_kg, (int, float)):
+#             self.__kg = new_kg
+#         else:
+#             print("Килограммы задаются только числами.")
+#
+#     def to_pounds(self):
+#         return self.__kg * 2.205
+#
+#
+# weight = KgToPounds(12)
+# print(weight.kg, "кг =>", end=' ')
+# print(weight.to_pounds(), 'фунтов')
+# weight.kg = 41
+# print(weight.kg, "кг =>", end=' ')
+# print(weight.to_pounds(), 'фунтов')
+# weight.kg = 'десять'
+# print(weight.kg, "кг =>", end=' ')
+# print(weight.to_pounds(), 'фунтов')
 
-    def drow_rectangle(self):
-        for i in range(self.__dlinna):
-            print('*' * self.__shirina)
+# class Person:
+#     def __init__(self, name, age):
+#         self.__name = name
+#         self.__age = age
+#
+#     @property
+#     def name(self):
+#         return self.__name
+#
+#     @name.setter
+#     def name(self, name):
+#         self.__name = name
+#
+#     @name.deleter
+#     def name(self):
+#         del self.__name
+#
+#     @property
+#     def age(self):
+#         return self.age
+#
+#     @age.setter
+#     def age(self, age):
+#         self.__age = age
+#
+#     @age.deleter
+#     def age(self):
+#         del self.__age
+#
+# p1 = Person("Petr", 39)
+# print(p1.__dict__)
+# p1.name = 'Igor'
+# p1.age = 26
+# print(p1.__dict__)
+# del p1.name
+# print(p1.__dict__)
 
-r1 = Rectangle('8', 10)
-r1.get_param()
-r1.set_param(3, 9)
-r1.get_param()
-r1.ploshad()
-r1.perimetr()
-r1.gipotenuza()
-r1.drow_rectangle()
+# class Point:
+#     __count = 0
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.__count += 1
+#
+#     @staticmethod
+#     def get_count():
+#         return Point.__count
+#
+#
+# p1 = Point(5, 10)
+# p2 = Point(4, 2)
+# p3 = Point(4, 9)
+#
+# print(Point.get_count())
+
+# class Change:
+#     @staticmethod
+#     def inc(x):
+#         return x + 1
+#
+#     @staticmethod
+#     def dec(x):
+#         return x - 1
+#
+# print(Change.inc(10), Change.dec(10))   # К статическим методам мы можем обращасть как через метод,
+#                                         # татк и через экземпляр класса
+
+# class Matim:
+#     @staticmethod
+#     def max(*args):
+#         x = args[0]
+#         for i in args:
+#             if i > x:
+#                 x = i
+#         return i
+#
+#     @staticmethod
+#     def min(*args):
+#         return min(args)
+#
+#     @staticmethod
+#     def arf(*args):
+#         return sum(args) / len(args)
+#
+#     @staticmethod
+#     def factorial(a):
+#         x = 1
+#         for i in range(1, a+1):
+#             x *= i
+#         return x
+#
+# print(Matim.max(3, 5, 7, 9, 8, 11))
+# print(Matim.arf(3, 5, 7, 9))
+# print(Matim.factorial(5))
+
+# class Date:
+#     def __init__(self, day, month, year):
+#         self.day = day
+#         self.month = month
+#         self.year = year
+#
+#     @classmethod
+#     def from_string(cls, date_as_string):
+#         day, month, year = map(int, date_as_string.split('.'))
+#         date1 = cls(day, month, year)
+#         return date1
+#
+#
+#     def string_to_db(self):
+#         return f'{self.year}-{self.month}-{self.day}'
+#
+#
+# string_date = Date.from_string('23.11.2022')
+# print(string_date.string_to_db())
+# string_date1 = Date.from_string('21.01.2022')
+# print(string_date1.string_to_db())
+
+# ДЗ от 13.12.2022
+
+class Figure:
+    count = 0
+
+    @staticmethod
+    def triangle_area_geron(a, b, c):
+        p = (a+b+c)/2
+        s = (p * (p - a) * (p - b) * (p - c)) ** 0.5
+        Figure.count += 1
+        return s
+
+    @staticmethod
+    def triangle_area_base_hight(a, h):
+        Figure.count += 1
+        return a * h * 0.5
+
+    @staticmethod
+    def square_area(a):
+        Figure.count += 1
+        return a ** 2
+
+    @staticmethod
+    def rectangular_area(a, b):
+        Figure.count += 1
+        return a * b
+
+    @staticmethod
+    def count_def_sqr():
+        return Figure.count
+
+
+print('Площадь треугольника по формуле Герона:', Figure.triangle_area_geron(3, 4, 5))
+print('Площадь треугольника через основание и высоту:', Figure.triangle_area_base_hight(6, 7))
+print('Площадь квадрата:', Figure.square_area(7))
+print('Площадь прямоугольника:', Figure.rectangular_area(2, 6))
+print('Количество подсчета площади:', Figure.count_def_sqr())
