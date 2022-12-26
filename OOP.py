@@ -902,140 +902,144 @@
 
 # --через Декораторы--
 
-class Account:
-    rate_usd = 0.013
-    rate_eur = 0.011
-    suffix = 'RUB'
-    suffix_usd = 'USD'
-    suffix_eur = 'EUR'
-
-    def __init__(self, num, surname, percent, value=0):
-        self.__num = num
-        self.__surname = surname
-        self.__percent = percent
-        self.__value = value
-        print(f"Счет #{self.__num} принадлежащий {self.__surname} был открыт.")
-        print('*' * 50)
-
-    def __del__(self):
-        print('*' * 50)
-        print(f'Счет #{self.__num} принадлежащий {self.__surname} был закрыт')
-
-    @classmethod
-    def set_usd_rate(cls, rate):
-        cls.rate_usd = rate
-
-    @classmethod
-    def set_eru_rate(cls, rate):
-        cls.rate_eur = rate
-
-    def print_balance(self):
-        print(f"Текущий банас {self.__value} {Account.suffix}")
-
-    def print_info(self):
-        print('Информация о счете')
-        print('-' * 20)
-        print(f'#{self.__num}')
-        print(f'Владелец: {self.__surname}')
-        self.print_balance()  # вызываем другой метод внутри класса
-        print(f'Проценты: {self.__percent:.1%}')  # превращение десятичного числа в проценты,
-        # число указывает кол-во знаков после запятой
-        print('-' * 20)
-
-    @staticmethod
-    def convert(value, rate):
-        return value * rate
-
-    @property
-    def num(self):
-        return self.__num
-
-    @num.setter
-    def num(self, num):
-        self.__num = num
-
-    @property
-    def surname(self):
-        return self.__surname
-
-    @surname.setter
-    def surname(self, surname):
-        self.__surname = surname
-
-    @property
-    def percent(self):
-        return self.__percent
-
-    @percent.setter
-    def percent(self, percent):
-        self.__percent = percent
-
-    @property
-    def value(self):
-        return self.__value
-
-    @value.setter
-    def value(self, value):
-        self.__value = value
-
-    def add_percents(self):
-        self.__value += self.__value * self.__percent
-        print('Проценты были успешно начислены!')
-        self.print_balance()
-
-    def withdraw_money(self, val):
-        if val > self.__value:
-            print(f'К сожалению у Вас нет {val} {Account.suffix}')
-        else:
-            self.__value -= val
-            print(f'{val} {Account.suffix} была успешна снята!')
-        self.print_balance()
-
-    def add_money(self, val):
-        self.__value += val
-        print(f'{val} {Account.suffix} было успешно добавлено!')
-        self.print_balance()
-
-    def convert_to_usd(self):
-        usd_val = Account.convert(self.__value, Account.rate_usd)
-        print(f'Состояние счета: {usd_val} {Account.suffix_usd}')
-
-    def convert_to_eur(self):
-        eur_val = Account.convert(self.__value, Account.rate_eur)
-        print(f'Состояние счета: {eur_val} {Account.suffix_eur}')
-
-
-acc = Account('12345', 'Долгих', 0.03, 1000)
-acc.print_info()
-acc.convert_to_usd()
-acc.convert_to_eur()
-print()
-Account.set_usd_rate(2)
-Account.set_eru_rate(3)
-acc.convert_to_usd()
-acc.convert_to_eur()
-print()
-acc.surname = 'Дюма'
-acc.num = '345789'
-acc.print_info()
-print()
-acc.add_percents()
-print()
-acc.withdraw_money(1000)
-print()
-acc.add_money(5000)
+# class Account:
+#     rate_usd = 0.013
+#     rate_eur = 0.011
+#     suffix = 'RUB'
+#     suffix_usd = 'USD'
+#     suffix_eur = 'EUR'
+#
+#     def __init__(self, num, surname, percent, value=0):
+#         self.__num = num
+#         self.__surname = surname
+#         self.__percent = percent
+#         self.__value = value
+#         print(f"Счет #{self.__num} принадлежащий {self.__surname} был открыт.")
+#         print('*' * 50)
+#
+#     def __del__(self):
+#         print('*' * 50)
+#         print(f'Счет #{self.__num} принадлежащий {self.__surname} был закрыт')
+#
+#     @classmethod
+#     def set_usd_rate(cls, rate):
+#         cls.rate_usd = rate
+#
+#     @classmethod
+#     def set_eru_rate(cls, rate):
+#         cls.rate_eur = rate
+#
+#     def print_balance(self):
+#         print(f"Текущий банас {self.__value} {Account.suffix}")
+#
+#     def print_info(self):
+#         print('Информация о счете')
+#         print('-' * 20)
+#         print(f'#{self.__num}')
+#         print(f'Владелец: {self.__surname}')
+#         self.print_balance()  # вызываем другой метод внутри класса
+#         print(f'Проценты: {self.__percent:.1%}')  # превращение десятичного числа в проценты,
+#         # число указывает кол-во знаков после запятой
+#         print('-' * 20)
+#
+#     @staticmethod
+#     def convert(value, rate):
+#         return value * rate
+#
+#     @property
+#     def num(self):
+#         return self.__num
+#
+#     @num.setter
+#     def num(self, num):
+#         self.__num = num
+#
+#     @property
+#     def surname(self):
+#         return self.__surname
+#
+#     @surname.setter
+#     def surname(self, surname):
+#         self.__surname = surname
+#
+#     @property
+#     def percent(self):
+#         return self.__percent
+#
+#     @percent.setter
+#     def percent(self, percent):
+#         self.__percent = percent
+#
+#     @property
+#     def value(self):
+#         return self.__value
+#
+#     @value.setter
+#     def value(self, value):
+#         self.__value = value
+#
+#     def add_percents(self):
+#         self.__value += self.__value * self.__percent
+#         print('Проценты были успешно начислены!')
+#         self.print_balance()
+#
+#     def withdraw_money(self, val):
+#         if val > self.__value:
+#             print(f'К сожалению у Вас нет {val} {Account.suffix}')
+#         else:
+#             self.__value -= val
+#             print(f'{val} {Account.suffix} была успешна снята!')
+#         self.print_balance()
+#
+#     def add_money(self, val):
+#         self.__value += val
+#         print(f'{val} {Account.suffix} было успешно добавлено!')
+#         self.print_balance()
+#
+#     def convert_to_usd(self):
+#         usd_val = Account.convert(self.__value, Account.rate_usd)
+#         print(f'Состояние счета: {usd_val} {Account.suffix_usd}')
+#
+#     def convert_to_eur(self):
+#         eur_val = Account.convert(self.__value, Account.rate_eur)
+#         print(f'Состояние счета: {eur_val} {Account.suffix_eur}')
+#
+#
+# acc = Account('12345', 'Долгих', 0.03, 1000)
+# acc.print_info()
+# acc.convert_to_usd()
+# acc.convert_to_eur()
+# print()
+# Account.set_usd_rate(2)
+# Account.set_eru_rate(3)
+# acc.convert_to_usd()
+# acc.convert_to_eur()
+# print()
+# acc.surname = 'Дюма'
+# acc.num = '345789'
+# acc.print_info()
+# print()
+# acc.add_percents()
+# print()
+# acc.withdraw_money(1000)
+# print()
+# acc.add_money(5000)
 
 # import re
 #
+#
 # class UserData:
+#
 #     def __init__(self, fio, old, ps, weight):
-#         self.verify_fio(fio)
-#         self.verify_old(old)
-#         self.verify_weight(weight)
-#         self.__fio = fio
-#         self.__old = old
-#         self.__password = ps
-#         self.__weight = weight
+#         # self.verify_fio(fio)
+#         # self.verify_old(old)
+#         # self.verify_weight(weight)
+#         # self.verify_ps(ps)
+#
+#         self.fio = fio
+#         self.old = old
+#         self.password = ps
+#         self.weight = weight
 #
 #     @staticmethod
 #     def verify_fio(fio):
@@ -1059,8 +1063,362 @@ acc.add_money(5000)
 #         if not isinstance(w, float) or w < 20:
 #             raise TypeError('Вес должен быть вещественным числом от 20 кг и выше.')
 #
+#     @staticmethod
+#     def verify_ps(ps):
+#         if not isinstance(ps, str):
+#             raise TypeError('Паспорт должен быть строкой')
+#         s = ps.split()
+#         if len(s) != 2 or len(s[0]) != 4 or len(s[1]) != 6:
+#             raise TypeError('Неверный формат паспорта')
+#         for p in s:
+#             if not p.isdigit():
+#                 raise TypeError('Серия и номер паспорта должны состоять из цифр')
 #
+#     @property
+#     def fio(self):
+#         return self.__fio
 #
+#     @fio.setter
+#     def fio(self, fio):
+#         self.verify_fio(fio)
+#         self.__fio = fio
+#
+#     @property
+#     def old(self):
+#         return self.__old
+#
+#     @old.setter
+#     def old(self, old):
+#         self.verify_old(old)
+#         self.__old = old
+#
+#     @property
+#     def password(self):
+#         return self.__password
+#
+#     @password.setter
+#     def password(self, ps):
+#         self.verify_ps(ps)
+#         self.__password = ps
+#
+#     @property
+#     def weight(self):
+#         return self.__weight
+#
+#     @weight.setter
+#     def weight(self, weight):
+#         self.verify_weight(weight)
+#         self.__weight = weight
+#
+# # Урок 20.12.2022
 #
 # p1 = UserData('Волков Игорь Николаевич', 25, '1234 567890', 80.8)
+# p1.fio = "Быков Игорь Николаевич"
+# print(p1.fio)
+
+# --НАСЛЕДОВАНИЯ--
+
+
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self):
+#         return f"({self.__x}, {self.__y})"
+#
+#
+# class Prop:
+#     def __init__(self, sp: Point, ep: Point, color: str = "red", width: int = 1):
+#         print('Инициализатор базового класса')
+#         self._sp = sp
+#         self._ep = ep
+#         self._color = color
+#         self.__width = width
+#
+#     def get_width(self):
+#         return self.__width
+#
+#
+# class Line(Prop):
+#     def __init__(self, *args):
+#         # Point.__init__(self, *args)
+#         print("Переопределенный инициализатор Line")
+#         super().__init__(*args)
+#
+#     def draw_line(self):
+#         print(f'Рисование линии: {self._sp}, {self._ep}, {self._color}, {self.get_width()}')
+#
+#
+# class Rect(Prop):
+#     def __init__(self, sp, ep, color, width, bg='yellow'):
+#         super().__init__(sp, ep, color, width)
+#         self._background = bg
+#
+#     def draw_rect(self):
+#         print(
+#             f'Рисование прямоугольника: {self._sp}, {self._ep}, {self._color}, {self.get_width()}, {self._background}')
+#
+#
+# line = Line(Point(1, 2), Point(10, 20))
+# line.draw_line()
+# rect = Rect(Point(30, 40), Point(70, 80), 'red', 10)
+# rect.draw_rect()
+
+# DRY (Don't Repeat Yourself) - Не повторяйся
+
+# --22.12.2022--
+
+
+# class Figure:
+#     def __init__(self, color):
+#         self.__color = color
+#
+#     def __str__(self):
+#         return f'{self.__color}'
+#
+#     @property
+#     def color(self):
+#         return self.__color
+#
+#     @color.setter
+#     def color(self, c):
+#         self.__color = c
+#
+#
+# class Rectangle(Figure):
+#     def __init__(self, width, height, color):
+#         super().__init__(color)
+#         self.width = width
+#         self.height = height
+#
+#     def __str__(self):
+#         return f"{self.__width}, {self.__height}, {self.color}"
+#
+#     @property
+#     def width(self):
+#         return self.__width
+#
+#     @width.setter
+#     def width(self, w):
+#         if w > 0:
+#             self.__width = w
+#         else:
+#             raise ValueError('Укажите положительное число')
+#
+#     @property
+#     def height(self):
+#         return self.__height
+#
+#     @height.setter
+#     def height(self, h):
+#         if h > 0:
+#             self.__height = h
+#         else:
+#             raise ValueError('Укажите положительное число')
+#
+#     def area(self):
+#         return self.__width * self.__height
+#
+#
+# rect = Rectangle(10, 20, 'green')
+# print(rect.width)
+# print(rect.height)
+# print(rect.color)
+# rect.color = 'red'
+# print(rect)
+# rect.width = 5
+# rect.height = 8
+# print(rect)
+# print(rect.area())
+
+
+# class Rect:
+#     def __init__(self, width, height):
+#         self.width = width
+#         self.height = height
+#
+#     def show_rect(self):
+#         print(f'Прямоугольник:\nШирина: {self.width}\nВысота: {self.height}')
+#
+#
+# class RectFon(Rect):
+#     def __init__(self, width, height, background):
+#         self.fon = background
+#         super().__init__(width, height)
+#
+#     def show_rect(self):
+#         super().show_rect()
+#         print('Фон:', self.fon)
+#
+#
+# class RectBorder(Rect):
+#     def __init__(self, width, height, border):
+#         self.border = border
+#         super().__init__(width, height)
+#
+#     def show_rect(self):
+#         super().show_rect()
+#         print('Рамка: ', self.border)
+#
+#
+# class RectFonBorder(RectFon):
+#     def __init__(self, width, height, background, border):
+#         super().__init__(width, height, background)
+#         self.border = border
+#
+#     def show_rect(self):
+#         super().show_rect()
+#         print('Рамка: ', self.border)
+#
+#
+# shape = Rect(100, 200)
+# shape.show_rect()
+# print()
+# shape1 = RectFon(400, 300, 'yellow')
+# shape1.show_rect()
+# print()
+# shape2 = RectBorder(600, 500, '1px solid red')
+# shape2.show_rect()
+# print()
+# shape3 = RectFonBorder(300, 400, 'black', '2px solid red')
+# shape3.show_rect()
+
+
+# class Vector(list):
+#     def __str__(self):
+#         return " ".join(map(str, self))
+#
+#
+# v = Vector([1, 2, 3])
+# print(v)
+# print(type(v))
+
+# --Перегрузка методов--
+
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self):
+#         return f"({self.__x}, {self.__y})"
+#
+#     def is_int(self):
+#         if not isinstance(self.__x, int) or not isinstance(self.__y, int):
+#             print('Координаты должны быть целочисленными')
+#             return False
+#         return True
+#
+#
+# class Prop:
+#     def __init__(self, sp: Point, ep: Point, color: str = "red", width: int = 1):
+#         print('Инициализатор базового класса')
+#         self._sp = sp
+#         self._ep = ep
+#         self._color = color
+#         self._width = width
+#
+#     def set_coords(self, sp, ep=None):
+#         if ep is None:
+#             if sp.is_int():
+#                 self._sp = sp
+#         else:
+#             if sp.is_int() and ep.is_int():
+#                 self._sp = sp
+#                 self._ep = ep
+#
+#
+# class Line(Prop):
+#
+#     def draw_line(self):
+#         print(f'Рисование линии: {self._sp}, {self._ep}, {self._color}, {self._width}')
+#
+#
+# line = Line(Point(1, 2), Point(10, 20))
+# line.draw_line()
+# line.set_coords(Point(20, 40), Point(50, 60))
+# line.draw_line()
+# line.set_coords(Point(200, 400))
+# line.draw_line()
+
+# --Абстрактные методы--
+
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self):
+#         return f"({self.__x}, {self.__y})"
+#
+#     def is_int(self):
+#         if not isinstance(self.__x, int) or not isinstance(self.__y, int):
+#             print('Координаты должны быть целочисленными')
+#             return False
+#         return True
+#
+#
+# class Prop:
+#     def __init__(self, sp: Point, ep: Point, color: str = "red", width: int = 1):
+#         print('Инициализатор базового класса')
+#         self._sp = sp
+#         self._ep = ep
+#         self._color = color
+#         self._width = width
+#
+#     def draw_line(self):
+#         raise NotImplementedError('В дочернем классе должен быт определен метод draw()')
+#
+#
+# class Line(Prop):
+#
+#     def draw_line(self):
+#         print(f'Рисование линии: {self._sp}, {self._ep}, {self._color}, {self._width}')
+#     pass
+#
+#
+# line = Line(Point(1, 2), Point(10, 20))
+# line.draw_line()
+
+# дз от 22.12.2022
+
+class Table:
+    def __init__(self, width=None, length=None, radius=None):
+        if length is None:
+            self._width = width
+            self._length = self._width
+        else:
+            self._width = width
+            self._length = length
+        self._radius = radius
+
+    def area_rect_table(self):
+        raise NotImplementedError("В дочернем классе должен быт определен метод area_rect_table()")
+
+    def area_circle_table(self):
+        raise NotImplementedError("В дочернем классе должен быт определен метод area_circle_table()")
+
+
+class RectTable(Table):
+    def area_rect_table(self):
+        return self._width * self._length
+    pass
+
+
+class CircleTable(Table):
+    def area_circle_table(self):
+        return round(3.14141414 * (self._radius ** 2), 2)
+    pass
+
+table1 = RectTable(20, 10)
+print(table1.__dict__)
+print(table1.area_rect_table())
+table2 = RectTable(20)
+print((table2.__dict__))
+print(table2.area_rect_table())
+table3 = CircleTable(radius=20)
+print(table3.__dict__)
+print(table3.area_circle_table())
+
 
