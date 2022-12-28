@@ -1383,42 +1383,268 @@
 
 # дз от 22.12.2022
 
-class Table:
-    def __init__(self, width=None, length=None, radius=None):
-        if length is None:
-            self._width = width
-            self._length = self._width
-        else:
-            self._width = width
-            self._length = length
-        self._radius = radius
+# class Table:
+#     def __init__(self, width=None, length=None, radius=None):
+#         if length is None:
+#             self._width = width
+#             self._length = self._width
+#         else:
+#             self._width = width
+#             self._length = length
+#         self._radius = radius
+#
+#     def area_rect_table(self):
+#         raise NotImplementedError("В дочернем классе должен быт определен метод area_rect_table()")
+#
+#     def area_circle_table(self):
+#         raise NotImplementedError("В дочернем классе должен быт определен метод area_circle_table()")
+#
+#
+# class RectTable(Table):
+#     def area_rect_table(self):
+#         return self._width * self._length
+#     pass
+#
+#
+# class CircleTable(Table):
+#     def area_circle_table(self):
+#         return round(3.14141414 * (self._radius ** 2), 2)
+#     pass
+#
+# table1 = RectTable(20, 10)
+# print(table1.__dict__)
+# print(table1.area_rect_table())
+# table2 = RectTable(20)
+# print((table2.__dict__))
+# print(table2.area_rect_table())
+# table3 = CircleTable(radius=20)
+# print(table3.__dict__)
+# print(table3.area_circle_table())
 
-    def area_rect_table(self):
-        raise NotImplementedError("В дочернем классе должен быт определен метод area_rect_table()")
+# Lesson -- 27.12.2022 --
 
-    def area_circle_table(self):
-        raise NotImplementedError("В дочернем классе должен быт определен метод area_circle_table()")
+# class Table:
+#     def __init__(self, width=None, length=None, radius=None):
+#         if radius is None:
+#             if length is None:
+#                 self._width = width
+#                 self._length = self._width
+#             else:
+#                 self._width = width
+#                 self._length = length
+#         else:
+#             self._radius = radius
+#
+#     def area_table(self):
+#         raise NotImplementedError("В дочернем классе должен быт определен метод area_table()")
+#
+#
+# class RectTable(Table):
+#     def area_table(self):
+#         return self._width * self._length
+#
+#
+# class CircleTable(Table):
+#     def area_table(self):
+#         return round(3.14141414 * self._radius ** 2, 2)
+#
+#
+# table1 = RectTable(20, 10)
+# print(table1.__dict__)
+# print(table1.area_table())
+# table2 = RectTable(20)
+# print(table2.__dict__)
+# print(table2.area_table())
+# table3 = CircleTable(radius=20)
+# print(table3.__dict__)
+# print(table3.area_table())
+
+# Импорт абстракт-методов
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Chess(ABC):
+#     def draw(self):
+#         print("Нарисовал шахматную фигуру")
+#
+#     @abstractmethod
+#     def move(self):
+#         # print("Переместил шахматную фигуру")
+#         pass
+#
+#
+# class Queen(Chess):
+#     def move(self):
+#         print("Переместил шахматную фигуру")
+#
+#
+# q = Queen()
+# q.draw()
+# q.move()
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Currency(ABC):
+#     def __init__(self, value):
+#         self.value = value
+#
+#     @abstractmethod
+#     def convert_to_rub(self):
+#         pass
+#
+#     @abstractmethod
+#     def print_value(self):
+#         print(self.value, end=' ')
+#
+#
+# class Dollar(Currency):
+#     rate_to_rub = 74.16
+#     suffix = 'USD'
+#
+#     def convert_to_rub(self):
+#         rub = self.value * Dollar.rate_to_rub
+#         return rub
+#
+#     def print_value(self):
+#         super().print_value()
+#         print(Dollar.suffix, end=" ")
+#
+#
+# class Euro(Currency):
+#     rate_to_rub = 90.14
+#     suffix = 'EUR'
+#
+#     def convert_to_rub(self):
+#         rub = self.value * Euro.rate_to_rub
+#         return rub
+#
+#     def print_value(self):
+#         super().print_value()
+#         print(Euro.suffix, end=" ")
+#
+#
+# d = [Dollar(5), Dollar(10), Dollar(50), Dollar(100)]
+# print('*' * 50)
+# for elem in d:
+#     elem.print_value()
+#     print(f'= {elem.convert_to_rub():.2f} RUB')
+# print()
+#
+# e = [Euro(5), Euro(10), Euro(50), Euro(100)]
+# print('*' * 50)
+# for elem in e:
+#     elem.print_value()
+#     print(f'= {elem.convert_to_rub():.2f} RUB')
+
+# -- ИНТЕРФЕЙСЫ -- интерфейсный класс - это абстрактный класс, который состоит только из абстрактных методов
+
+# from abc import ABC, abstractmethod
+#
+#
+# class Father(ABC):
+#     @abstractmethod
+#     def display1(self):
+#         pass
+#
+#     @abstractmethod
+#     def display2(self):
+#         pass
+#
+#
+# class Child(Father):
+#     def display1(self):
+#         print("Дочерний класс")
+#
+#
+# class GrandChild(Child):
+#     def display2(self):
+#         print("Внучатый класс")
+#
+#
+# gc = GrandChild()
+# gc.display2()
+# gc.display1()
+
+# -- ВЛОЖЕННЫЕ КЛАССЫ --
+
+# class MyOuter:
+#     age = 18
+#
+#     def __init__(self, name):
+#         self.name = name
+#
+#     @staticmethod
+#     def outer_class_method():
+#         print("Я метод внешнего класса")
+#
+#     def outer_obj_method(self):
+#         print('Я - связующий метод')
+#
+#     class MyInner:
+#         def __init__(self, inner_name, obj):
+#             self.inner_name = inner_name
+#             self.obj = obj
+#
+#         def inner_method(self):
+#             print('Я метод вложенного класса', MyOuter.age, self.obj.name)
+#             MyOuter.outer_class_method()
+#             self.obj.outer_obj_method()
+#
+#
+# out = MyOuter('внешний')
+# print(out.name)
+# inner = out.MyInner('внутренний', out)
+# print(inner.inner_name)
+# inner.inner_method()
+
+# class Color:
+#     def __init__(self):
+#         self.name = 'Green'
+#         self.lg = self.LightGreen()
+#
+#     def show(self):
+#         print('Name:', self.name)
+#
+#     class LightGreen:
+#         def __init__(self):
+#             self.name = "Light green"
+#             self.code = '021sdf'
+#
+#         def display(self):
+#             print('Name:', self.name)
+#             print('Code:', self.code)
+#
+#
+# outer = Color()
+# outer.show()
+#
+# g = outer.lg
+# g.display()
+
+class Student:
+    def __init__(self):
+        self.name = "Roman"
+        self.nb = self.Notebook()
+
+    def print_info(self):
+        print(self.name, '=>', end=' ')
+        self.nb.print_info()
+
+    class Notebook:
+        def __init__(self):
+            self.model = 'HP'
+            self.cpu = 'i7'
+            self.memory = '16'
+
+        def print_info(self):
+            print(f'{self.model}, {self.cpu}, {self.memory}')
 
 
-class RectTable(Table):
-    def area_rect_table(self):
-        return self._width * self._length
-    pass
-
-
-class CircleTable(Table):
-    def area_circle_table(self):
-        return round(3.14141414 * (self._radius ** 2), 2)
-    pass
-
-table1 = RectTable(20, 10)
-print(table1.__dict__)
-print(table1.area_rect_table())
-table2 = RectTable(20)
-print((table2.__dict__))
-print(table2.area_rect_table())
-table3 = CircleTable(radius=20)
-print(table3.__dict__)
-print(table3.area_circle_table())
+st = Student()
+st.print_info()
+st.name = 'Vladimir'
+st.print_info()
 
 
