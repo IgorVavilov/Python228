@@ -1623,28 +1623,132 @@
 # g = outer.lg
 # g.display()
 
-class Student:
-    def __init__(self):
-        self.name = "Roman"
-        self.nb = self.Notebook()
+#дз от 27.12.2022
+
+# class Student:
+#     def __init__(self):
+#         self.name = "Roman"
+#         self.nb = self.Notebook()
+#
+#     def print_info(self):
+#         print(self.name, '=>', end=' ')
+#         self.nb.print_info()
+#
+#     class Notebook:
+#         def __init__(self):
+#             self.model = 'HP'
+#             self.cpu = 'i7'
+#             self.memory = '16'
+#
+#         def print_info(self):
+#             print(f'{self.model}, {self.cpu}, {self.memory}')
+#
+#
+# st = Student()
+# st.print_info()
+# st.name = 'Vladimir'
+# st.print_info()
+
+
+# дз от 20.12.2022
+
+
+class Automobile:
+
+    def __init__(self, model_name, year, product, power, color, price):
+        self.model_name = model_name
+        self.year = year
+        self.product = product
+        self.power = power
+        self.color = color
+        self.price = price
+
+    @staticmethod
+    def verify_model_name(model_name):
+        if not isinstance(model_name, str):
+            raise TypeError("Название модели должно быть строкой")
+
+    @staticmethod
+    def verify_year(year):
+        if not isinstance(year, int):
+            raise TypeError('Год должен быть числом')
+
+    @staticmethod
+    def verify_product(product):
+        if not isinstance(product, str):
+            raise TypeError("Производитель модели должно быть строкой")
+
+    @staticmethod
+    def verify_price(price):
+        if not isinstance(price, int):
+            raise TypeError('Цена должна быть числом')
+
+    @property
+    def model_name(self):
+        return self.__model_name
+
+    @model_name.setter
+    def model_name(self, model_name):
+        self.verify_model_name(model_name)
+        self.__model_name = model_name
+
+    @property
+    def year(self):
+        return self.__year
+
+    @year.setter
+    def year(self, year):
+        self.verify_year(year)
+        self.__year = year
+
+    @property
+    def product(self):
+        return self.__product
+
+    @product.setter
+    def product(self, product):
+        self.verify_product(product)
+        self.__product = product
+
+    @property
+    def power(self):
+        return self.__power
+
+    @power.setter
+    def power(self, power):
+        self.__power = power
+
+    @property
+    def color(self):
+        return self.__color
+
+    @color.setter
+    def color(self, color):
+        self.__color = color
+
+    @property
+    def price(self):
+        return self.__price
+
+    @price.setter
+    def price(self, price):
+        self.verify_price(price)
+        self.__price = price
 
     def print_info(self):
-        print(self.name, '=>', end=' ')
-        self.nb.print_info()
-
-    class Notebook:
-        def __init__(self):
-            self.model = 'HP'
-            self.cpu = 'i7'
-            self.memory = '16'
-
-        def print_info(self):
-            print(f'{self.model}, {self.cpu}, {self.memory}')
+            print('*' * 11, 'Данные автомобиля', '*' * 11)
+            print(f'Название модели: {self.model_name}')
+            print(f'Год выпуска: {self.year}')
+            print(f'Производитель: {self.product}')
+            print(f'Мощность двигателя: {self.power}')
+            print(f'Цвет: {self.color}')
+            print(f'Цена: {self.price}')
+            print('=' * 42)
 
 
-st = Student()
-st.print_info()
-st.name = 'Vladimir'
-st.print_info()
-
+a1 = Automobile('X7 M50i', 2021, 'BMW', '530 л.с.', 'white', 107900000)
+a1.print_info()
+a1.model_name = 'Cadilac'
+print()
+a1.print_info()
 
