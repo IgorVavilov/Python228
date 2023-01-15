@@ -1653,102 +1653,800 @@
 # дз от 20.12.2022
 
 
-class Automobile:
+# class Automobile:
+#
+#     def __init__(self, model_name, year, product, power, color, price):
+#         self.model_name = model_name
+#         self.year = year
+#         self.product = product
+#         self.power = power
+#         self.color = color
+#         self.price = price
+#
+#     @staticmethod
+#     def verify_model_name(model_name):
+#         if not isinstance(model_name, str):
+#             raise TypeError("Название модели должно быть строкой")
+#
+#     @staticmethod
+#     def verify_year(year):
+#         if not isinstance(year, int):
+#             raise TypeError('Год должен быть числом')
+#
+#     @staticmethod
+#     def verify_product(product):
+#         if not isinstance(product, str):
+#             raise TypeError("Производитель модели должно быть строкой")
+#
+#     @staticmethod
+#     def verify_price(price):
+#         if not isinstance(price, int):
+#             raise TypeError('Цена должна быть числом')
+#
+#     @property
+#     def model_name(self):
+#         return self.__model_name
+#
+#     @model_name.setter
+#     def model_name(self, model_name):
+#         self.verify_model_name(model_name)
+#         self.__model_name = model_name
+#
+#     @property
+#     def year(self):
+#         return self.__year
+#
+#     @year.setter
+#     def year(self, year):
+#         self.verify_year(year)
+#         self.__year = year
+#
+#     @property
+#     def product(self):
+#         return self.__product
+#
+#     @product.setter
+#     def product(self, product):
+#         self.verify_product(product)
+#         self.__product = product
+#
+#     @property
+#     def power(self):
+#         return self.__power
+#
+#     @power.setter
+#     def power(self, power):
+#         self.__power = power
+#
+#     @property
+#     def color(self):
+#         return self.__color
+#
+#     @color.setter
+#     def color(self, color):
+#         self.__color = color
+#
+#     @property
+#     def price(self):
+#         return self.__price
+#
+#     @price.setter
+#     def price(self, price):
+#         self.verify_price(price)
+#         self.__price = price
+#
+#     def print_info(self):
+#             print('*' * 11, 'Данные автомобиля', '*' * 11)
+#             print(f'Название модели: {self.model_name}')
+#             print(f'Год выпуска: {self.year}')
+#             print(f'Производитель: {self.product}')
+#             print(f'Мощность двигателя: {self.power}')
+#             print(f'Цвет: {self.color}')
+#             print(f'Цена: {self.price}')
+#             print('=' * 42)
+#
+#
+# a1 = Automobile('X7 M50i', 2021, 'BMW', '530 л.с.', 'white', 107900000)
+# a1.print_info()
+# a1.model_name = 'Cadilac'
+# print()
+# a1.print_info()
 
-    def __init__(self, model_name, year, product, power, color, price):
-        self.model_name = model_name
-        self.year = year
-        self.product = product
-        self.power = power
-        self.color = color
-        self.price = price
+# Урок от 29.12.2022
 
-    @staticmethod
-    def verify_model_name(model_name):
-        if not isinstance(model_name, str):
-            raise TypeError("Название модели должно быть строкой")
+# class Employee:
+#     def __init__(self):
+#         self.name = "Employee"
+#         self.intern = self.Intern()
+#         self.head = self.Head()
+#
+#     def show(self):
+#         print('Name:', self.name)
+#
+#     class Intern:
+#         def __init__(self):
+#             self.name = "Smith"
+#             self.id = "657"
+#
+#         def display(self):
+#             print('Name:', self.name)
+#             print('Id:', self.id)
+#
+#     class Head:
+#         def __init__(self):
+#             self.name = "Alba"
+#             self.id = "007"
+#
+#         def display(self):
+#             print('Name:', self.name)
+#             print('Id:', self.id)
+#
+#
+# outer = Employee()
+# outer.show()
+#
+# d1 = outer.intern
+# print()
+# d1.display()
+# d2 = outer.head
+# print()
+# d2.display()
 
-    @staticmethod
-    def verify_year(year):
-        if not isinstance(year, int):
-            raise TypeError('Год должен быть числом')
+# class Computer:
+#     def __init__(self, name, os1, brand):
+#         self.name = name
+#         self.os = self.OS(os1)
+#         self.cpu = self.CPU(brand)
+#
+#     class OS:
+#         def __init__(self, title):
+#             self.title = title
+#
+#         def system(self):
+#             return self.title
+#
+#     class CPU:
+#         def __init__(self, brand):
+#             self.brand = brand
+#
+#         def make(self):
+#             return self.brand
+#
+#         def model(self, model):
+#             return model
+#
+#
+# comp = Computer('PC001', 'Windows-7', "Intel")
+# my_os = comp.os
+# my_cpu = comp.cpu
+# print(comp.name)
+# print(my_os.system())
+# print(my_cpu.make())
+# print(my_cpu.model('Core-i7'))
 
-    @staticmethod
-    def verify_product(product):
-        if not isinstance(product, str):
-            raise TypeError("Производитель модели должно быть строкой")
 
-    @staticmethod
-    def verify_price(price):
-        if not isinstance(price, int):
-            raise TypeError('Цена должна быть числом')
+# class Base:
+#     def __init__(self):
+#         self.db = self.Inner()
+#
+#     def display(self):
+#         print('In Base Class')
+#
+#     class Inner:
+#         def display1(self):
+#             print("Inner of Base Class")
+#
+#
+# class SubClass(Base):
+#     def __init__(self):
+#         print("In SubClass")
+#         super().__init__()
+#
+#     class Inner(Base.Inner):
+#         def display2(self):
+#             print("Inner of SubClass")
+#
+#
+# a = SubClass()
+# a.display()
+#
+# # b = a.db
+# b = SubClass.Inner()
+# b.display1()
+# b.display2()
 
-    @property
-    def model_name(self):
-        return self.__model_name
+###################################################
+# --МНОЖЕСТВЕННОЕ НАСЛЕДОВАНИЕ-- когда дочерние классы могут наследоваться от нескольких родительских классов
 
-    @model_name.setter
-    def model_name(self, model_name):
-        self.verify_model_name(model_name)
-        self.__model_name = model_name
+# class Creature:
+#     def __init__(self, name):
+#         self.name = name
+#
+#
+# class Animal(Creature):
+#     def sleep(self):
+#         print(self.name + ' is sleeping')
+#
+#
+# class Pet(Creature):
+#     def play(self):
+#         print(self.name + ' is playing')
+#
+#
+# class Dog(Animal, Pet):
+#     def bark(self):
+#         print(self.name + ' is barking')
+#
+#
+# beast = Dog('Buddy')
+# beast.bark()
+# beast.sleep()
+# beast.play()
 
-    @property
-    def year(self):
-        return self.__year
+# class MyClass:
+#     pass
+# obj = MyClass()
+# obj.a = 1
+# obj.b = 2
+# obj.i = 3
+# obj.ireal = 3.5
+# obj.integer = 4
+# obj.z = 5
+#
+# def incIntsI(obj):
+#     for name in obj.__dict__.keys():
+#         if name.startswith('i'):
+#             val = getattr(obj, name)
+#             if isinstance(val, int):
+#                 setattr(obj, name, val + 1)
+# print(obj.__dict__)
+# incIntsI(obj)
+# print(obj.__dict__)
 
-    @year.setter
-    def year(self, year):
-        self.verify_year(year)
-        self.__year = year
+# class A:
+#     def __init__(self):
+#         print("A")
+#
+#
+# class AA:
+#     pass
+#
+#
+# class B(A):
+#     # def __init__(self):
+#     #     print('B')
+#
+#     def hi(self):
+#         print('B_hi')
+#
+#
+# class C(AA):
+#     # def __init__(self):
+#     #     print('C')
+#
+#     def hi(self):
+#         print('C_hi')
+#
+#
+# class D(B, C):
+#     # def __init__(self):
+#     #     B.__init__(self)
+#     #     C.__init__(self)
+#     #     print('D')
+#
+#     def hi(self):
+#         C.hi(self)
+#         print('D_hi')
+#
+#
+# d = D()
+# d.hi()
+# print(D.mro())
+# print(D.__mro__)
 
-    @property
-    def product(self):
-        return self.__product
+# class B:
+#     def __init__(self):
+#         print('B')
+#
+#
+# class C:
+#     def __init__(self):
+#         print('C')
+#
+#
+# class D(B, C):
+#     def __init__(self):
+#         B.__init__(self)
+#         C.__init__(self)
+#         print('D')
+#
+#
+#
+# d = D()
+# print(D.mro())
+# print(D.__mro__)
 
-    @product.setter
-    def product(self, product):
-        self.verify_product(product)
-        self.__product = product
+# class Point:
+#     def __init__(self, x=0, y=0):
+#         self.x = x
+#         self.y = y
+#
+#     def __str__(self):
+#         return f'({self.x}, {self.y})'
+#
+#
+# class Style:
+#     def __init__(self, color = 'red', width=1):
+#         print('Инициализатор Style')
+#         self._color = color
+#         self._width = width
+#
+#
+# class Pos:
+#     def __init__(self, sp: Point, ep: Point, *args):
+#         print('Инициализатор Pos')
+#         self._sp = sp
+#         self._ep = ep
+#         Style.__init__(self, *args)     # super().__init__(*args)
+#
+#
+# class Line(Pos, Style):
+#     # def __init__(self, sp: Point, ep: Point, color = 'red', width=1):
+#     #     Pos.__init__(self, sp, ep)
+#     #     Style.__init__(self, color, width)
+#
+#     def draw(self):
+#         print(f"Рисование линии: {self._sp}, {self._ep}, {self._color}, {self._width}")
+#
+#
+# l1 = Line(Point(10, 10), Point(100, 100), 'green', 5)
+# l1.draw()
+# print(Line.mro())
 
-    @property
-    def power(self):
-        return self.__power
+# ------ Миксин (примеси) -------
 
-    @power.setter
-    def power(self, power):
-        self.__power = power
+# class Displayer:
+#     @staticmethod
+#     def display(message):
+#         print(message)
+#
+#
+# class LoggerMixin:
+#     def log(self, message, filename='logfile.txt'):
+#         with open(filename, 'a') as fh:
+#             fh.write(message)
+#
+#     def display(self, message):
+#         Displayer.display(message)
+#         self.log(message)
+#
+#
+# class MySubClass(LoggerMixin, Displayer):
+#     def log(self, message, filename=''):
+#         super().log(message, filename='subclasslog.txt')
+#
+#
+# sub = MySubClass()
+# sub.display("Строка будет отображаться и регистрироваться в файле")
 
-    @property
-    def color(self):
-        return self.__color
+# ---Урок 10.01.2023---
 
-    @color.setter
-    def color(self, color):
-        self.__color = color
+# class Goods:
+#     def __init__(self, name, weight, price):
+#         print("Init Goods")
+#         self.name = name
+#         self.weight = weight
+#         self.price = price
+#         super().__init__(name, weight, price)
+#
+#     def print_info(self):
+#         print(f'{self.name}, {self.weight}, {self.price}')
+#
+#
+# class MixinLog:
+#     ID = 0
+#
+#     def __init__(self, name, weight, price):
+#         super().__init__(name, weight, price)
+#         print("Init MixinLog")
+#         MixinLog.ID += 1
+#         self.id = self.ID
+#         self.goods = Goods(name, weight, price)
+#
+#     def save_sell_log(self):
+#         print(f"{self.id}: товар был продан в 00:00 {self.goods.name}")
+#
+#
+# class NoteBook(Goods, MixinLog):
+#     pass
+#
+#
+# n = NoteBook('HP', 1.5, 35000)
+# # p = NoteBook('RR', 2.0, 45000)
+# n.print_info()
+# n.save_sell_log()
 
-    @property
-    def price(self):
-        return self.__price
 
-    @price.setter
-    def price(self, price):
-        self.verify_price(price)
-        self.__price = price
+# ---Перегрузка операторов---
+
+# 24 * 60 * 60 = 86400 (кол-во секунд в одном дне)
+
+# class Clock:
+#     DAY = 86400
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#
+#         self.sec = sec % self.DAY
+#
+#     def __add__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec + other.sec)
+#
+#     def __sub__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec - other.sec)
+#
+#     def __mul__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec * other.sec)
+#
+#     def __floordiv__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec // other.sec)
+#
+#     def __mod__(self, other):
+#         if not isinstance(other, Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом Clock")
+#         return Clock(self.sec % other.sec)
+#
+#     def __eq__(self, other):
+#         if self.sec == other.sec:
+#             return True
+#         return False
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         return f"{Clock.get_form(h)}:{Clock.get_form(m)}:{Clock.get_form(s)}"
+#
+#     @staticmethod
+#     def get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#
+# c1 = Clock(100)
+# c2 = Clock(200)
+# c4 = Clock(300)
+# c3 = c1 + c2 + c4
+# print(c1.get_format_time())
+# print(c2.get_format_time())
+# if c1 == c2:
+#     print("Время равно")
+# else:
+#     print("Время разное")
+# print(c4.get_format_time())
+# print(c3.get_format_time())
+# c3 = c4 - c1
+# print(c3.get_format_time())
+# c3 = c4 // c1
+# print(c3.get_format_time())
+# c3 = c4 * c1
+# print(c3.get_format_time())
+# c3 = c1 % c2
+# print(c3.get_format_time())
+
+
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = list(marks)
+#
+#     def __getitem__(self, item):
+#         if 0 <= item < len(self.marks):
+#             return self.marks[item]
+#         else:
+#             raise IndexError('Неверный индекс')
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, int) or key < 0:
+#             raise TypeError("Индекс должен быть целым не отрицательным числом")
+#
+#         if key >= len(self.marks):
+#             off = key + 1 - len(self.marks)
+#             self.marks.extend([None] * off)
+#
+#         self.marks[key] = value
+#
+#     def __delitem__(self, key):
+#         if not isinstance(key, int):
+#             raise TypeError("Индекс должен быть целым числом")
+#         del self.marks[key]
+#
+#
+# s1 = Student('Сергей', [5, 4, 5, 6, 4, 3])
+# print(s1[3])
+# s1[10] = 2
+# del s1[2]
+# # print(s1.marks[3])
+# print(s1.marks)
+
+# class Clock:
+#     DAY = 86400
+#
+#     def __init__(self, sec: int):
+#         if not isinstance(sec, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#
+#         self.sec = sec % self.DAY
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#         return f"{Clock.get_form(h)}:{Clock.get_form(m)}:{Clock.get_form(s)}"
+#
+#     @staticmethod
+#     def get_form(x):
+#         return str(x) if x > 9 else "0" + str(x)
+#
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#
+#         if item == 'hour':
+#             return (self.sec // 3600) % 24
+#         elif item == 'min':
+#             return (self.sec // 60) % 60
+#         elif item == 'sec':
+#             return self.sec % 60
+#
+#         return "Неверный ключ"
+#
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#
+#         if not isinstance(value, int):
+#             raise ValueError('Значение должно быть целым числом')
+#
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec // 3600) % 24
+#
+#         if key == 'hour':
+#             self.sec = s + 60 * m + value * 3600
+#         elif key == 'min':
+#             self.sec = s + 60 * value + h * 3600
+#         elif key == 'sec':
+#             self.sec = value + 60 * m + h * 3600
+#
+#         return "Неверный ключ"
+#
+#
+# c1 = Clock(80000)
+# print(c1.get_format_time())
+# c1['hour'] = 10
+# c1['min'] = 10
+# c1['sec'] = 15
+# print(c1['hour'], c1['min'], c1['sec'])
+# print(c1.get_format_time())
+
+# дз от 10.01.2023
+import random
+
+
+class Cat:
+    child_sex = ['М', 'Ж']
+    child_name = 'No name'
+    child_age = 0
+    child_lst = []
+
+    def __init__(self, name, sex):
+        self.name = name
+        self.sex = sex
 
     def print_info(self):
-            print('*' * 11, 'Данные автомобиля', '*' * 11)
-            print(f'Название модели: {self.model_name}')
-            print(f'Год выпуска: {self.year}')
-            print(f'Производитель: {self.product}')
-            print(f'Мощность двигателя: {self.power}')
-            print(f'Цвет: {self.color}')
-            print(f'Цена: {self.price}')
-            print('=' * 42)
+        if self.sex == 'М':
+            return f'{self.name} хороший мальчик.'
+        elif self.sex == 'Ж':
+            return f'{self.name} хорошая девочка.'
+
+    def __add__(self, other):
+        if (not self.sex == 'М' or not other.sex == 'Ж') and (not self.sex == 'Ж' or not other.sex == 'М'):
+            raise ValueError("Питомцы должны быть разнополыми")
+        return self.make_child()
+
+    def make_child(self):
+        for i in range(random.randint(1, 7)):
+            child_sex = random.choice(Cat.child_sex)
+            child = f'Cat(name={Cat.child_name}, age={Cat.child_age}, sex={child_sex})'
+            Cat.child_lst.append(child)
+        return Cat.child_lst
+
+cat1 = Cat('Мурзик', 'М')
+cat2 = Cat('Майка', 'Ж')
+print(cat1.print_info())
+print(cat2.print_info())
+cat3 = cat1 + cat2
+print(cat3)
+
+# ---Урок от 12.01.2023---
+
+# --Полиморфизм--
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def get_perimetr(self):
+#         return 2 * (self.w + self.h)
+#
+#
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def get_perimetr(self):
+#         return 4 * self.a
+#
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def get_perimetr(self):
+#         return self.a + self.b + self.c
+#
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+#
+# # print(r1.get_per_rect(), r2.get_per_rect())
+# # print()
+#
+# s1 = Square(10)
+# s2 = Square(20)
+#
+# # print(s1.get_per_sq(), s2.get_per_sq())
+#
+# t1 = Triangle(1, 2, 3)
+# t2 = Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+#
+# for g in shape:
+#     print(g.get_perimetr())
 
 
-a1 = Automobile('X7 M50i', 2021, 'BMW', '530 л.с.', 'white', 107900000)
-a1.print_info()
-a1.model_name = 'Cadilac'
-print()
-a1.print_info()
+# class Number:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self, a):
+#         return self.value + int(a)
+#
+#
+# class Text:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self, a):
+#         return len(self.value + str(a))
+#
+#
+# t1 = Number(10)
+# t2 = Text('Python')
+#
+# print(t1.total(35))
+# print(t2.total(35))
+
+
+# class Cat:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f'Я кот. Меня зовут {self.name}. Мой возраст {self.age}'
+#
+#     def make_sound(self):
+#         return f'{self.name} мяукает'
+#
+#
+# class Dog:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f'Я собака. Меня зовут {self.name}. Мой возраст {self.age}'
+#
+#     def make_sound(self):
+#         return f'{self.name} гавкает'
+#
+#
+# cat1 = Cat('Пушок', 2.5)
+# dog1 = Dog('Мухтар', 4)
+#
+# animals = [cat1, dog1]
+#
+# for a in animals:
+#     print(a.info())
+#     print(a.make_sound())
+
+
+# class Human:
+#     def __init__(self, surname, name, age):
+#         self.surname = surname
+#         self.name = name
+#         self.age = age
+#
+#     def info(self):
+#         return f'{self.surname}, {self.name}, {self.age}'
+#
+#
+# class Student(Human):
+#     def __init__(self, surname, name, age, spec, group, rate):
+#         super().__init__(surname, name, age)
+#         self.spec = spec
+#         self.group = group
+#         self.rate = rate
+#
+#     def info(self):
+#         return f'{super().info()}, {self.spec}, {self.group}, {self.rate}'
+#
+#
+# class Teacher(Human):
+#     def __init__(self, surname, name, age, sub, rate):
+#         super().__init__(surname, name, age)
+#         self.sub = sub
+#         self.rate = rate
+#
+#     def info(self):
+#         return f'{super().info()}, {self.sub}, {self.rate}'
+#
+#
+# class Graduate(Student):
+#     def __init__(self, surname, name, age, spec, group, rate, top):
+#         super().__init__(surname, name, age, spec, group, rate)
+#         self.top = top
+#
+#     def info(self):
+#         return f'{super().info()}, {self.top}'
+#
+# group = [
+#     Student("Батодалаев", "Даши", 16, "ГК", "Web_011", 5),
+#     Student("Загидуллин", "Линар", 32, "РПО", "PD_011", 5),
+#     Graduate("Шугани", "Сергей", 15, "РПО", "PD_011", 5, "Защита персональных данных"),
+#     Teacher("Даньшин", "Андрей", 38, "Астрофизика", 110),
+#     Student("Маркин", "Даниил", 17, "ГК", "Python_011", 5),
+#     Teacher("Башкиров", "Алексей", 45, "Разработка приложений", 20)
+# ]
+#
+# for i in group:
+#     print(i.info())
+
+
+# class Cat:
+#     def __init__(self, name):
+#         self.name = name
+#
+#     def __repr__(self):
+#         return f'{self.__class__}: {self.name}'
+#
+#     def __str__(self):
+#         return f'{self.name}'
+#
+# cat = Cat('Пушок')
+# print(cat)
 
