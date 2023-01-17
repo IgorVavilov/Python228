@@ -2239,43 +2239,43 @@
 # print(c1.get_format_time())
 
 # дз от 10.01.2023
-import random
-
-
-class Cat:
-    child_sex = ['М', 'Ж']
-    child_name = 'No name'
-    child_age = 0
-    child_lst = []
-
-    def __init__(self, name, sex):
-        self.name = name
-        self.sex = sex
-
-    def print_info(self):
-        if self.sex == 'М':
-            return f'{self.name} хороший мальчик.'
-        elif self.sex == 'Ж':
-            return f'{self.name} хорошая девочка.'
-
-    def __add__(self, other):
-        if (not self.sex == 'М' or not other.sex == 'Ж') and (not self.sex == 'Ж' or not other.sex == 'М'):
-            raise ValueError("Питомцы должны быть разнополыми")
-        return self.make_child()
-
-    def make_child(self):
-        for i in range(random.randint(1, 7)):
-            child_sex = random.choice(Cat.child_sex)
-            child = f'Cat(name={Cat.child_name}, age={Cat.child_age}, sex={child_sex})'
-            Cat.child_lst.append(child)
-        return Cat.child_lst
-
-cat1 = Cat('Мурзик', 'М')
-cat2 = Cat('Майка', 'Ж')
-print(cat1.print_info())
-print(cat2.print_info())
-cat3 = cat1 + cat2
-print(cat3)
+# import random
+#
+#
+# class Cat:
+#     child_sex = ['М', 'Ж']
+#     child_name = 'No name'
+#     child_age = 0
+#     child_lst = []
+#
+#     def __init__(self, name, sex):
+#         self.name = name
+#         self.sex = sex
+#
+#     def print_info(self):
+#         if self.sex == 'М':
+#             return f'{self.name} хороший мальчик.'
+#         elif self.sex == 'Ж':
+#             return f'{self.name} хорошая девочка.'
+#
+#     def __add__(self, other):
+#         if (not self.sex == 'М' or not other.sex == 'Ж') and (not self.sex == 'Ж' or not other.sex == 'М'):
+#             raise ValueError("Питомцы должны быть разнополыми")
+#         return self.make_child()
+#
+#     def make_child(self):
+#         for i in range(random.randint(1, 7)):
+#             child_sex = random.choice(Cat.child_sex)
+#             child = f'Cat(name={Cat.child_name}, age={Cat.child_age}, sex={child_sex})'
+#             Cat.child_lst.append(child)
+#         return Cat.child_lst
+#
+# cat1 = Cat('Мурзик', 'М')
+# cat2 = Cat('Майка', 'Ж')
+# print(cat1.print_info())
+# print(cat2.print_info())
+# cat3 = cat1 + cat2
+# print(cat3)
 
 # ---Урок от 12.01.2023---
 
@@ -2450,3 +2450,258 @@ print(cat3)
 # cat = Cat('Пушок')
 # print(cat)
 
+
+# class Point:
+#     def __init__(self, *args):
+#         self.__coord = args
+#
+#     def __len__(self):
+#         return len(self.__coord)
+#
+#
+# p = Point(2, 7)
+# print(len(p))
+
+# import math
+#
+# class Point:
+#     __slots__ = ('x', 'y', '__length')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         self.length = math.sqrt(x * x + y * y)
+#
+#     @property
+#     def length(self):
+#         return self.__length
+#
+#     @length.setter
+#     def length(self, value):
+#         self.__length = value
+#
+#
+# pt = Point(1, 2)
+# print(pt.length)
+# pt.z = 3
+# print(pt.__dict__)
+
+
+# class Point:
+#     __slots__ = ('x', 'y')
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point2D:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# pt = Point(1, 2)
+# pt2 = Point2D(1, 2)
+# print('pt =', pt.__sizeof__())
+# print('pt2 =', pt2.__sizeof__() + pt2.__dict__.__sizeof__())
+
+
+# class Point:
+#     __slots__ = ('x', 'y') # slots создает список либо кортеж элементов. при этом мы не можем в объект
+#                             # ничего добавить. Как бы создается закрытый список. В таких объектах
+#                             # отсутствует __dict__
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point3D(Point):
+#     __slots__ = 'z', # запятая в конце означает кортеж. slots должен быть либо кортежем, либо списком
+#
+#     def __init__(self, x, y, z):
+#         super().__init__(x, y)
+#         self.z = z
+#
+#
+# pt = Point(1, 2)
+# pt3 = Point3D(10, 20, 30)
+# # pt3.z = 30
+# print(pt3.x, pt3.y, pt3.z)
+# # print(pt3.__dict__)
+
+
+# ---Функторы---    делает из экземпляра класса функцию. экземпляр можно вызывать как функцию
+
+# class Counter:
+#     def __init__(self):
+#         self.__counter = 0
+#
+#     def __call__(self, *args, **kwargs):
+#         self.__counter += 1
+#         print(self.__counter)
+#
+#
+# c1 = Counter()
+# c1()
+# c1()
+# c1()
+# c2 = Counter()
+# с2()
+# с2()
+
+
+# class StripChars:
+#     def __init__(self, chars):
+#         self.__chars = chars
+#
+#     def __call__(self, *args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError('Аргумент должен быть строкой')
+#
+#         return args[0].strip(self.__chars)
+#
+#
+#
+# s1 = StripChars("?:!.; ")
+# print(s1(" !?Hello World!;. "))
+#
+# def strip_chars(chars):
+#     def wrap(*args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError('Аргумент должен быть строкой')
+#
+#         return args[0].strip(chars)
+#
+#     return wrap
+#
+# s1 = strip_chars("?:!.; ")
+# print(s1(" !?Hello World!;. "))
+
+# дз от 12.01.2023
+# Создать класс Shape и три дочерних класса: Square, Rectangle, Triangle. Родительский класс должен
+# иметь астрактные методы нахождения периметра, площади, рисования фигуры и вывода информации.
+# С помощью полиморфизма реализуйте вывод информации о дочерних фигурах.
+
+from abc import ABC, abstractmethod
+from math import sqrt
+
+
+class Shape(ABC):
+    def __init__(self, color):
+        self.color = color
+
+    @abstractmethod
+    def perimetr(self):
+        ...
+
+    @abstractmethod
+    def area(self):
+        ...
+
+    @abstractmethod
+    def print_figure(self):
+        ...
+
+    @abstractmethod
+    def print_info(self):
+        ...
+
+
+class Square(Shape):
+    def __init__(self, side, color):
+        super().__init__(color)
+        self.side = side
+
+    def perimetr(self):
+        return self.side * 4
+
+    def area(self):
+        return self.side ** 2
+
+    def print_figure(self):
+        for i in range(self.side):
+            print('*' * self.side)
+
+    def print_info(self):
+        print('===Квадрат===')
+        print('Сторона:', self.side)
+        print('Цвет:', self.color)
+        print('Площадь:', self.area())
+        print('Периметр', self.perimetr())
+
+
+class Rectangle(Shape):
+    def __init__(self, width, height, color):
+        super().__init__(color)
+        self.width = width
+        self.height = height
+
+    def perimetr(self):
+        return (self.width + self.height) * 2
+
+    def area(self):
+        return self.width * self.height
+
+    def print_figure(self):
+        for i in range(self.width):
+            print('*' * self.height)
+
+    def print_info(self):
+        print('===Прямоугольник===')
+        print('Длинна:', self.width)
+        print('Ширина:', self.height)
+        print('Цвет:', self.color)
+        print('Площадь:', self.area())
+        print('Периметр', self.perimetr())
+
+
+class Triangle(Shape):
+    def __init__(self, side1, side2, side3, color):
+        super().__init__(color)
+        self.side1 = side1
+        self.side2 = side2
+        self.side3 = side3
+
+    def perimetr(self):
+        p = self.side1 + self.side2 + self.side3
+        return p
+
+    def area(self):
+        p = (self.side1 + self.side2 + self.side3) / 2
+        return sqrt(p * (p - self.side1) * (p - self.side2) * (p - self.side3))
+
+    def print_figure(self):
+        max_side = max(self.side1, self.side2, self.side3)
+        min_side = min(self.side1, self.side2, self.side3)
+        space_qtn = max_side // 2
+        star_qtn = 1
+        for i in range(min_side):
+            if i > 0:
+                star_qtn += 2
+                print(' ' * (space_qtn - i), end='')
+                print('*' * star_qtn)
+            else:
+                print(' ' * (space_qtn - i), end='')
+                print('*' * star_qtn)
+
+    def print_info(self):
+        print('===Треугольник===')
+        print('Сторона 1:', self.side1)
+        print('Сторона 2:', self.side2)
+        print('Сторона 3:', self.side3)
+        print('Цвет:', self.color)
+        print('Площадь:', round(self.area(), 2))
+        print('Периметр', self.perimetr())
+
+
+square = Square(3, 'red')
+rectangle = Rectangle(3, 7, 'green')
+triangle = Triangle(11, 6, 6, 'yellow')
+
+fig = [square, rectangle, triangle]
+for k in fig:
+    k.print_info()
+    k.print_figure()
+    print()
