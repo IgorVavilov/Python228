@@ -2277,6 +2277,42 @@
 # cat3 = cat1 + cat2
 # print(cat3)
 
+# import random
+#
+# class Cat:
+#     def __init__(self, name, pol, age):
+#         self.name = name
+#         self.pol = pol
+#         self.age = age
+#
+#     def __str__(self):
+#         if self.pol == 'M':
+#             return f'{self.name} is good boy!!!'
+#         elif self.pol == 'F':
+#             return f'{self.name} is good girl!!!'
+#         else:
+#             return f'{self.name} is good Kitty!!!'
+#
+#     def __repr__(self):
+#         return f"Cat(name='{self.name}', age={self.age}, sex='{self.pol}')"
+#
+#     def __add__(self, other):
+#         if self.pol != other.pol:
+#             return [Cat('No name', random.choice(['M', 'F']), 0) for _ in range(random.randint(1, 3))]
+#         else:
+#             return "Types are not support!"
+#
+#
+# cat1 = Cat('Tom', 4, 'M')
+# print(cat1)
+# cat2 = Cat('Elsa', 5, 'F')
+# print(cat2)
+# print(cat1 + cat2)
+# cat3 = Cat('Ron', 6, 'M')
+# print(cat3)
+# print(cat1 + cat3)
+
+
 # ---Урок от 12.01.2023---
 
 # --Полиморфизм--
@@ -2583,125 +2619,516 @@
 # Создать класс Shape и три дочерних класса: Square, Rectangle, Triangle. Родительский класс должен
 # иметь астрактные методы нахождения периметра, площади, рисования фигуры и вывода информации.
 # С помощью полиморфизма реализуйте вывод информации о дочерних фигурах.
+#
+# from abc import ABC, abstractmethod
+# from math import sqrt
+#
+#
+# class Shape(ABC):
+#     def __init__(self, color):
+#         self.color = color
+#
+#     @abstractmethod
+#     def perimetr(self):
+#         ...
+#
+#     @abstractmethod
+#     def area(self):
+#         ...
+#
+#     @abstractmethod
+#     def print_figure(self):
+#         ...
+#
+#     @abstractmethod
+#     def print_info(self):
+#         ...
+#
+#
+# class Square(Shape):
+#     def __init__(self, side, color):
+#         super().__init__(color)
+#         self.side = side
+#
+#     def perimetr(self):
+#         return self.side * 4
+#
+#     def area(self):
+#         return self.side ** 2
+#
+#     def print_figure(self):
+#         for i in range(self.side):
+#             print('*' * self.side)
+#
+#     def print_info(self):
+#         print('===Квадрат===')
+#         print('Сторона:', self.side)
+#         print('Цвет:', self.color)
+#         print('Площадь:', self.area())
+#         print('Периметр', self.perimetr())
+#
+#
+# class Rectangle(Shape):
+#     def __init__(self, width, height, color):
+#         super().__init__(color)
+#         self.width = width
+#         self.height = height
+#
+#     def perimetr(self):
+#         return (self.width + self.height) * 2
+#
+#     def area(self):
+#         return self.width * self.height
+#
+#     def print_figure(self):
+#         for i in range(self.width):
+#             print('*' * self.height)
+#
+#     def print_info(self):
+#         print('===Прямоугольник===')
+#         print('Длинна:', self.width)
+#         print('Ширина:', self.height)
+#         print('Цвет:', self.color)
+#         print('Площадь:', self.area())
+#         print('Периметр', self.perimetr())
+#
+#
+# class Triangle(Shape):
+#     def __init__(self, side1, side2, side3, color):
+#         super().__init__(color)
+#         self.side1 = side1
+#         self.side2 = side2
+#         self.side3 = side3
+#
+#     def perimetr(self):
+#         p = self.side1 + self.side2 + self.side3
+#         return p
+#
+#     def area(self):
+#         p = (self.side1 + self.side2 + self.side3) / 2
+#         return sqrt(p * (p - self.side1) * (p - self.side2) * (p - self.side3))
+#
+#     def print_figure(self):
+#         max_side = max(self.side1, self.side2, self.side3)
+#         min_side = min(self.side1, self.side2, self.side3)
+#         space_qtn = max_side // 2
+#         star_qtn = 1
+#         for i in range(min_side):
+#             print(' ' * (min_side - i - 1) + '*' * (2 * i + 1)) # метод преподавателя
+#             if i > 0:
+#                 star_qtn += 2
+#                 print(' ' * (space_qtn - i), end='')
+#                 print('*' * star_qtn)
+#             else:
+#                 print(' ' * (space_qtn - i), end='')
+#                 print('*' * star_qtn)
+#
+#
+#     def print_info(self):
+#         print('===Треугольник===')
+#         print('Сторона 1:', self.side1)
+#         print('Сторона 2:', self.side2)
+#         print('Сторона 3:', self.side3)
+#         print('Цвет:', self.color)
+#         print('Площадь:', round(self.area(), 2))
+#         print('Периметр', self.perimetr())
+#
+#
+# square = Square(3, 'red')
+# rectangle = Rectangle(3, 7, 'green')
+# triangle = Triangle(11, 6, 6, 'yellow')
+#
+# fig = [square, rectangle, triangle]
+# for k in fig:
+#     k.print_info()
+#     k.print_figure()
+#     print()
 
-from abc import ABC, abstractmethod
-from math import sqrt
+# Урок 17.01.2023
+# Класс как декоратор
+
+# class MyDecorator:
+#     def __init__(self, fn):
+#         self.func = fn
+#
+#     def __call__(self, a, b):
+#         print('перед вызовом функции')
+#         res = self.func(a, b)
+#         # print('после вызова функции')
+#         return str(res) + '\nпосле вызова функции'
+
+# def MyDecorator(fn):
+#     def wrap():
+#         print('перед вызовом функции')
+#         fn()
+#         print('после вызова функции')
+#
+#     return wrap
+
+# @MyDecorator
+# def func(a, b):
+#     return a * b
+#
+# print(func(2, 5))
+
+# class Power:
+#     def __init__(self, fn):
+#         self.func = fn
+#
+#     def __call__(self, a, b):
+#         return self.func(a, b) ** 2
+#
+#
+# @Power
+# def func(a, b):
+#     return a * b
+#
+# print(func(2, 3))
 
 
-class Shape(ABC):
-    def __init__(self, color):
-        self.color = color
+# class MyDecorator:
+#     def __init__(self, fn):
+#         self.func = fn
+#
+#     def __call__(self, *args, **kwargs):
+#         print('перед вызовом функции')
+#         res = self.func(*args, **kwargs)
+#         return str(res) + '\nпосле вызова функции'
 
-    @abstractmethod
-    def perimetr(self):
-        ...
+# @MyDecorator
+# def func(a, b):
+#     return a * b
+#
+# @MyDecorator
+# def func1(a, b, c):
+#     return a * b * c
+#
+# @MyDecorator
+# def func2(a, b, c):
+#     return a * b * c
 
-    @abstractmethod
-    def area(self):
-        ...
-
-    @abstractmethod
-    def print_figure(self):
-        ...
-
-    @abstractmethod
-    def print_info(self):
-        ...
-
-
-class Square(Shape):
-    def __init__(self, side, color):
-        super().__init__(color)
-        self.side = side
-
-    def perimetr(self):
-        return self.side * 4
-
-    def area(self):
-        return self.side ** 2
-
-    def print_figure(self):
-        for i in range(self.side):
-            print('*' * self.side)
-
-    def print_info(self):
-        print('===Квадрат===')
-        print('Сторона:', self.side)
-        print('Цвет:', self.color)
-        print('Площадь:', self.area())
-        print('Периметр', self.perimetr())
+# print(func(2, 5))
+# print(func1(2, 5, 2))
+# print(func2(2, 5, c=3))
 
 
-class Rectangle(Shape):
-    def __init__(self, width, height, color):
-        super().__init__(color)
-        self.width = width
-        self.height = height
-
-    def perimetr(self):
-        return (self.width + self.height) * 2
-
-    def area(self):
-        return self.width * self.height
-
-    def print_figure(self):
-        for i in range(self.width):
-            print('*' * self.height)
-
-    def print_info(self):
-        print('===Прямоугольник===')
-        print('Длинна:', self.width)
-        print('Ширина:', self.height)
-        print('Цвет:', self.color)
-        print('Площадь:', self.area())
-        print('Периметр', self.perimetr())
+# class MyDecorator:
+#     def __init__(self, arg):
+#         self.name = arg
+#
+#     def __call__(self, fn):
+#         def wrap(a, b):
+#             print('перед вызовом функции')
+#             print(self.name)
+#             fn(a, b)
+#             print("после вызова функции")
+#
+#         return wrap
+#
+#
+# @MyDecorator('test2')
+# def func(a, b):
+#     print(a * b)
+#
+#
+# func(2, 5)
 
 
-class Triangle(Shape):
-    def __init__(self, side1, side2, side3, color):
-        super().__init__(color)
-        self.side1 = side1
-        self.side2 = side2
-        self.side3 = side3
+# ===Декорирование методов===
 
-    def perimetr(self):
-        p = self.side1 + self.side2 + self.side3
-        return p
-
-    def area(self):
-        p = (self.side1 + self.side2 + self.side3) / 2
-        return sqrt(p * (p - self.side1) * (p - self.side2) * (p - self.side3))
-
-    def print_figure(self):
-        max_side = max(self.side1, self.side2, self.side3)
-        min_side = min(self.side1, self.side2, self.side3)
-        space_qtn = max_side // 2
-        star_qtn = 1
-        for i in range(min_side):
-            if i > 0:
-                star_qtn += 2
-                print(' ' * (space_qtn - i), end='')
-                print('*' * star_qtn)
-            else:
-                print(' ' * (space_qtn - i), end='')
-                print('*' * star_qtn)
-
-    def print_info(self):
-        print('===Треугольник===')
-        print('Сторона 1:', self.side1)
-        print('Сторона 2:', self.side2)
-        print('Сторона 3:', self.side3)
-        print('Цвет:', self.color)
-        print('Площадь:', round(self.area(), 2))
-        print('Периметр', self.perimetr())
+# def dec(fn):
+#     def wrap(*args, **kwargs):
+#         print('*' * 20)
+#         fn(*args, **kwargs)
+#         print('*' * 20)
+#     return wrap
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     @dec
+#     def info(self):
+#         print(f'{self.name} {self.surname}')
+#
+#
+# p1  = Person("Vitaliy", "Ivanov")
+# p1.info()
 
 
-square = Square(3, 'red')
-rectangle = Rectangle(3, 7, 'green')
-triangle = Triangle(11, 6, 6, 'yellow')
+# +++Дескрипторы+++
+# __get__, __set__, __delete__
 
-fig = [square, rectangle, triangle]
-for k in fig:
-    k.print_info()
-    k.print_figure()
-    print()
+
+# class StringD:
+#     def __init__(self, value=None):
+#         if value:
+#             self.set(value)
+#
+#     def set(self, value):
+#         self.__value = value
+#
+#     def get(self):
+#         return self.__value
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = StringD(name)
+#         self.surname = StringD(surname)
+#
+#     # @property
+#     # def name(self):
+#     #     return self.__name
+#     #
+#     # @name.setter
+#     # def name(self, value):
+#     #     self.__name = value
+#     #
+#     # @property
+#     # def surname(self):
+#     #     return self.__surname
+#     #
+#     # @surname.setter
+#     # def surname(self, value):
+#     #     self.__nsurame = value
+#
+#
+# p = Person('Ivan', 'Ivanov')
+# p.name.set("Igor")
+# print(p.name.get(), p.surname.get())
+
+
+# class ValidateString:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if not isinstance(value, str):
+#             raise ValueError(f'{self.__name} должно быть строкой')
+#         instance.__dict__[self.__name] = value
+#
+#
+# class Person:
+#     name = ValidateString()
+#     surname = ValidateString()
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#
+# p = Person('Ivan', 'Petrov')
+# p.name = 12
+# print(p.name)
+# print(p.surname)
+
+# ДЗ от 17.01.2023
+# Создать класс Power, который будет декорировать функцию. Функция возвращает результат
+# умножения двух чисел (a = 2, b = 2), а класс возводит их в степень, которую принимает декоратор.
+# Результат: 64
+#
+#
+# class Power:
+#     def __init__(self, arg):
+#         self.name = arg
+#
+#     def __call__(self, fn):
+#         def wrap(a, b):
+#             fn(a ** self.name, b ** self.name)
+#         return wrap
+#
+#
+# @Power(4)
+# def func(a, b):
+#     print(a * b)
+#
+#
+# func(2, 2)
+
+
+# --Урок 19.01.2023---
+
+# Создать дескриптор класса Order, который задает имя товара, его цену и количество. В дескрипторе
+# должна быть реализована проверка на ввод положительных значений цены и количества товара.
+# Тест: Order('apple', 5, 10)
+
+# class NonNegative:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if value < 0:
+#             raise ValueError(f'Значение {self.__name} должно быть положительным')
+#         instance.__dict__[self.__name] = value
+#
+#
+# class Order:
+#     price = NonNegative()
+#     qty = NonNegative()
+#
+#     def __init__(self, name, price, qty):
+#         self.name = name
+#         self.price = price
+#         self.qty = qty
+#
+#     def total(self):
+#         return self.price * self.qty
+#
+#
+# a = Order('apple', 5, 10)
+# print(a.total())
+# a.price = 20
+# print(a.total())
+
+# Создать дескриптор для класса Point3D (создание точки в трехмерном пространстве) с проверкой на
+# ввод координат точки только целочисленных значений
+# {'_x': 1, '_y': 2, '_z': 3}
+
+# class Integer:
+#     @staticmethod
+#     def verify_coord(coord):
+#         if not isinstance(coord, int):
+#             raise TypeError(f'Координата {coord} должна быть целым числом')
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.name]
+#
+#     def __set__(self, instance, value):
+#         self.verify_coord(value)
+#         instance.__dict__[self.name] = value
+#
+#
+# class Point3D:
+#     x = Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3D(1, 2, 3)
+# print(p1.__dict__)
+# print(p1.y) # обращаемся к Гетеру (в данном случае 'y' это имя геттера)
+# print(p1._y) # обращение к переменной
+
+# Вариант 2
+
+# class Integer:
+#     @staticmethod
+#     def verify_coord(coord):
+#         if not isinstance(coord, int):
+#             raise TypeError(f'Координата {coord} должна быть целым числом')
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         # return instance.__dict__[self.name]
+#         return getattr(instance, self.name)
+#
+#     def __set__(self, instance, value):
+#         self.verify_coord(value)
+#         # instance.__dict__[self.name] = value
+#         setattr(instance, self.name, value)
+#
+#     def __delete__(self, instance):
+#         # del instance.__dict__[self.name]
+#         delattr(instance, self.name)
+#
+#
+# class Point3D:
+#     x = Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3D(1, 2, 3)
+# del p1.x
+# print(p1.__dict__)
+# print(p1.y) # обращаемся к Гетеру (в данном случае 'y' это имя геттера)
+# print(p1._y) # обращение к переменной
+
+# другой пример
+# class Point:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+# p1 = Point(5, 10)
+# print(p1.__dict__)
+# print(getattr(p1, 'x'))
+# setattr(p1, 'x', 6)
+# print(p1.__dict__)
+# print(p1.x)
+# print(hasattr(p1, 'z'))
+
+# Дескрипторы бывают двух типов data descriptor и non-data descriptor
+
+# class Integer:
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.name]
+#
+#
+# class Point3D:
+#     x = Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3D(1, 2, 3)
+# print(p1.__dict__)
+# print(p1.y) # обращаемся к Гетеру (в данном случае 'y' это имя геттера)
+
+
+# ===Создание модулей===
+
+# import geometry.rect
+# import geometry.trian
+# import geometry.sq
+# from geometry import rect, trian, sq
+# # from geometry import *  # для данной записи необходимо прописать информацию в __init__.py
+#
+# r1 = rect.Rectangle(1, 2)
+# r2 = rect.Rectangle(3, 4)
+#
+# s1 = sq.Square(10)
+# s2 = sq.Square(20)
+#
+# t1 = trian.Triangle(1, 2, 3)
+# t2 = trian.Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+#
+# for g in shape:
+#     print(g.get_perimetr())
+
+
