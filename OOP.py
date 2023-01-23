@@ -3131,4 +3131,52 @@
 # for g in shape:
 #     print(g.get_perimetr())
 
+# ДЗ от 19.01.2023
+# Создать класс "Треугольник", свойства - длины трех сторон. Правильность задания свойств должны
+# проверяться через дескриптор на ввод положительных целых числовых значений. Предусмотреть в классе
+# методы проверки существования треугольника.
+
+class Integer:
+    @staticmethod
+    def verify_num(side):
+        if not isinstance(side, int):
+            raise TypeError('Значение стороны треугольника должно быть целым числом')
+        elif side < 0:
+            raise ValueError('Значение стороны треугольника должно быть положительным числом')
+
+    def __set_name__(self, owner, name):
+        self.name = '_' + name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.name]
+
+    def __set__(self, instance, value):
+        self.verify_num(value)
+        # instance.__dict__[self.name] = value
+        setattr(instance, self.name, value)
+
+
+class Triangle:
+    a = Integer()
+    b = Integer()
+    c = Integer()
+
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def check_triangle(self):
+        if (self.a + self.b) > self.c and self.a + self.c > self.b and self.b + self.c > self.a:
+            return f'Треугольник со сторонами ({self.a}, {self.b}, {self.c}) существует.'
+        else:
+            return f'Треугольник со сторонами ({self.a}, {self.b}, {self.c}) не существует.'
+
+t1 = Triangle(2, 5, 6)
+t2 = Triangle(5, 2, 8)
+t3 = Triangle(7, 3, 6)
+
+tr_list = [t1, t2, t3]
+for tr in tr_list:
+    print(tr.check_triangle())
 
