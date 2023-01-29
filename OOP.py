@@ -1623,7 +1623,7 @@
 # g = outer.lg
 # g.display()
 
-#дз от 27.12.2022
+# дз от 27.12.2022
 
 # class Student:
 #     def __init__(self):
@@ -3136,47 +3136,353 @@
 # проверяться через дескриптор на ввод положительных целых числовых значений. Предусмотреть в классе
 # методы проверки существования треугольника.
 
-class Integer:
-    @staticmethod
-    def verify_num(side):
-        if not isinstance(side, int):
-            raise TypeError('Значение стороны треугольника должно быть целым числом')
-        elif side < 0:
-            raise ValueError('Значение стороны треугольника должно быть положительным числом')
+# class Integer:
+#     @staticmethod
+#     def verify_num(side):
+#         if not isinstance(side, int):
+#             raise TypeError('Значение стороны треугольника должно быть целым числом')
+#         elif side < 0:
+#             raise ValueError('Значение стороны треугольника должно быть положительным числом')
+#
+#     def __set_name__(self, owner, name):
+#         self.name = '_' + name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.name]
+#
+#     def __set__(self, instance, value):
+#         self.verify_num(value)
+#         # instance.__dict__[self.name] = value
+#         setattr(instance, self.name, value)
+#
+#
+# class Triangle:
+#     a = Integer()
+#     b = Integer()
+#     c = Integer()
+#
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def check_triangle(self):
+#         if (self.a + self.b) > self.c and self.a + self.c > self.b and self.b + self.c > self.a:
+#             return f'Треугольник со сторонами ({self.a}, {self.b}, {self.c}) существует.'
+#         else:
+#             return f'Треугольник со сторонами ({self.a}, {self.b}, {self.c}) не существует.'
+#
+# t1 = Triangle(2, 5, 6)
+# t2 = Triangle(5, 2, 8)
+# t3 = Triangle(7, 3, 6)
+# print(t1.__dict__)
+#
+# tr_list = [t1, t2, t3]
+# for tr in tr_list:
+#     print(tr.check_triangle())
 
-    def __set_name__(self, owner, name):
-        self.name = '_' + name
+# ---Урок 24.01.2023 ---
 
-    def __get__(self, instance, owner):
-        return instance.__dict__[self.name]
+# from car import electrocar
+# import random
+#
+# def main():
+#     e_car = electrocar.ElectroCar('Tesla', 'T', 2020, 50000)
+#     e_car.show_car()
+#     e_car.description_battery()
+#
+# if __name__ == '__main__':
+#     main()
 
-    def __set__(self, instance, value):
-        self.verify_num(value)
-        # instance.__dict__[self.name] = value
-        setattr(instance, self.name, value)
+# ---Упаковка данных---
+# Кодирование (сериализация) - запись данных
+# Декодирование (десериализация) - извлечение данных
+
+# 1. marshal
+# 2. pickle
+# 3. json
+
+# Методы у pickle и json есть 4 одинаковые методы.
+# dump() - сохраняет данные в файл
+# load() - считывание данных из открытого файла
+
+# dumps() - сохраняет данные в строку (в оперативную память) - сериализует
+# loads() - считывает данные из строки (из оперативной памяти) - десериализует
+
+# import pickle
 
 
-class Triangle:
-    a = Integer()
-    b = Integer()
-    c = Integer()
+# filename = "basket.txt"
+#
+# shop_list = {
+#     "фрукты": ["яблоки", "манго"],
+#     "овощи": ["морковь"],
+#     "бюджет": 1000
+# }
+#
+# # with open(filename, 'wb') as fn:
+# #     pickle.dump(shop_list, fn)
+#
+# with open(filename, 'rb') as fn:
+#     shop = pickle.load(fn)
+#
+# print(shop)
 
-    def __init__(self, a, b, c):
-        self.a = a
-        self.b = b
-        self.c = c
 
-    def check_triangle(self):
-        if (self.a + self.b) > self.c and self.a + self.c > self.b and self.b + self.c > self.a:
-            return f'Треугольник со сторонами ({self.a}, {self.b}, {self.c}) существует.'
-        else:
-            return f'Треугольник со сторонами ({self.a}, {self.b}, {self.c}) не существует.'
+# class Test:
+#     num = 35
+#     st = "Привет"
+#     lst = [1, 2, 3]
+#     d = {'first': 'a', "second": 2}
+#     tpl = (22, 33)
+#
+#     def __str__(self):
+#         return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\n" \
+#                f"Словарь: {Test.d}\nКортеж: {Test.tpl}"
+#
+#
+# obj = Test()
+#
+# my_obj = pickle.dumps(obj)
+# print(f'Сериализация в строку: \n{my_obj}\n')
+#
+# l_obj = pickle.loads(my_obj)
+# print(f'Десериализация в строку: \n{l_obj}\n')
 
-t1 = Triangle(2, 5, 6)
-t2 = Triangle(5, 2, 8)
-t3 = Triangle(7, 3, 6)
+# class Test2:
+#     def __init__(self):
+#         self.a = 35
+#         self.b = 'test'
+#         self.c = lambda x: x * x    # pickle не может обработать вложенные функции
+#
+#     def __str__(self):
+#         return f"{self.a} {self.b} {self.c(2)}"
+#
+#     # данный метод нужен для сериализации вложенных функций методом pickle (либо других данных,
+#     # которые не могут сериализоваться). Данный метод позволяет сохранить данные, которые можно сохранить.
+#     def __getstate__(self):
+#         attr = self.__dict__.copy()
+#         del attr['c']
+#         return attr
+#
+#     # данный метод используется для совмещения десериализованных данных с данными, которые нельзя было сериализовать
+#     def __setstate__(self, state):
+#         self.__dict__ = state
+#         self.c = lambda x: x * x
+#
+#
+# item1 = Test2()
+# item2 = pickle.dumps(item1)
+# item3 = pickle.loads(item2)
+# print(item3.__dict__)
+# print(item3)
 
-tr_list = [t1, t2, t3]
-for tr in tr_list:
-    print(tr.check_triangle())
+# Метод pickle используется только в программах Python.
+# JSON метод можно использовать и с другими технологиями.
+# import json
+#
+# data = {
+#     'name': 'Игорь',
+#     'hobbies': ('running', 'sky diving'),
+#     'age': 20,
+#     'children': [
+#         {
+#             'firstname': 'Alice',
+#             'age': 5
+#         },
+#         {
+#             'firstname': 'Bob',
+#             'age': 8
+#         }
+#     ]
+# }
+#
+# # with open('data_file.json', 'w') as fw:
+# #     json.dump(data, fw, indent=4)   # indent - кол-во пробелов во вложенных элементах
+# #
+# # with open('data_file.json', 'r') as fr:
+# #     data = json.load(fr)
+# #     print(data)
+#
+# json_string = json.dumps(data, ensure_ascii=False) # ensure_ascii преобразовывает русский алфавит из кодировки
+# print(json_string)
+# data = json.loads(json_string)
+# print(data)
 
+
+# Создать класс (любой). Свойства класса сохранить в JSON объект.
+
+# ---Урок 26.01.2023----
+
+import json
+from random import choice
+
+
+# def get_person():
+#     name = ''
+#     tel = ''
+#
+#     letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letter)
+#     # print(name)
+#
+#     while len(tel) != 10:
+#         tel += choice(nums)
+#     # print(tel)
+#
+#     person = {
+#         "name": name,
+#         "tel": tel
+#     }
+#     return person
+#
+#
+# def write_json(person_dict):
+#     try:
+#         data = json.load(open('persons.json'))
+#     except FileNotFoundError:
+#         data = []
+#
+#     data.append(person_dict)
+#     with open('persons.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(get_person())
+
+# ============================================
+# ============================================
+# ДЗ от 26.01.2023
+
+# def get_person():
+#     name = ''
+#     tel = ''
+#
+#     letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letter)
+#     # print(name)
+#
+#     while len(tel) != 10:
+#         tel += choice(nums)
+#     # print(tel)
+#
+#     person = {
+#         "name": name,
+#         "tel": tel
+#     }
+#     return person
+#
+#
+# def dict_index():
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     dict_id = ''
+#
+#     while len(dict_id) != 10:
+#         dict_id += choice(nums)
+#
+#     return dict_id
+#
+#
+# def write_json(person_dict):
+#     try:
+#         data = json.load(open('persons.json'))
+#     except FileNotFoundError:
+#         data = {}
+#
+#     data[dict_index()] = person_dict
+#     with open('persons.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(get_person())
+
+# ==========================================================
+# ==========================================================
+
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#
+#     def __str__(self):
+#         # a = ""
+#         # for i in self.marks:
+#         #     # a += f"{i}, "
+#         #     a += str(i) + ", "
+#         a = ", ".join(map(str, self.marks))
+#         return f"Студент: {self.name}: {a}"  # [:-2]
+#
+#     def add_marks(self, mark):
+#         self.marks.append(mark)
+#
+#     def del_marks(self, index):
+#         self.marks.pop(index)
+#
+#     def edit_marks(self, index, new_mark):
+#         self.marks[index] = new_mark
+#
+#     def average_marks(self):
+#         return round(sum(self.marks) / len(self.marks), 2)
+#
+#
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         # a = ''
+#         # for i in self.students:
+#         #     a += str(i) + '\n'
+#         a = '\n'.join(map(str, self.students))
+#         return f'Группа: {self.group}\n{a}'
+#
+#     def add_student(self, student):
+#         self.students.append(student)
+#
+#     def del_student(self, index):
+#         return self.students.pop(index)
+#
+#     @staticmethod
+#     def change_group(group1, group2, index):
+#         return group2.add_student(group1.del_student(index))
+#
+#
+# st1 = Student('Bodnya', [5, 4, 3, 4, 5, 3])
+# # print(st1)
+# # st1.add_marks(2)
+# # print(st1)
+# # st1.del_marks(2)
+# # print(st1)
+# # st1.edit_marks(-1, 5)
+# # print(st1)
+# # print(st1.average_marks())
+# st2 = Student('Nikolaenko', [2, 3, 5, 4, 2])
+# st3 = Student('Birukov', [2, 3, 5, 4, 2, 5])
+# sts = [st1, st2]
+# my_group = Group(sts, 'ГК Python')
+# # print(my_group)
+# # print()
+# my_group.add_student(st3)
+# # print(my_group)
+# # print()
+# my_group.del_student(1)
+# print(my_group)
+# print()
+# group22 = [st2]
+# my_group2 = Group(group22, 'ГК Web')
+# print(my_group2)
+# print()
+# Group.change_group(my_group, my_group2, 0)
+# print(my_group)
+# print()
+# print(my_group2)
