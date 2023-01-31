@@ -3311,6 +3311,31 @@
 
 
 # Создать класс (любой). Свойства класса сохранить в JSON объект.
+# ДЗ от 24.01.2023
+# import json
+#
+#
+# class Test:
+#     def __init__(self):
+#         self.num = 35
+#         self.st = "Привет"
+#         self.lst = [1, 2, 3]
+#         self.d = {'first': 'a', "second": 2}
+#         self.tpl = (22, 33)
+#
+#     def __str__(self):
+#         return f"Число: {self.num}\nСтрока: {self.st}\nСписок: {self.lst}\n" \
+#                f"Словарь: {self.d}\nКортеж: {self.tpl}"
+#
+#
+# obj = Test()
+#
+# my_obj = json.dumps(obj.__dict__)
+# print(f'Сериализация в строку: \n{my_obj}\n')
+#
+# l_obj = json.loads(my_obj)
+#
+# print(f'Десериализация в строку: \n{l_obj}\n')
 
 # ---Урок 26.01.2023----
 
@@ -3486,3 +3511,4 @@ from random import choice
 # print(my_group)
 # print()
 # print(my_group2)
+
