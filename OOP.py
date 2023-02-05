@@ -3339,8 +3339,8 @@
 
 # ---Урок 26.01.2023----
 
-import json
-from random import choice
+# import json
+# from random import choice
 
 
 # def get_person():
@@ -3432,7 +3432,9 @@ from random import choice
 
 # ==========================================================
 # ==========================================================
-
+# import json
+#
+#
 # class Student:
 #     def __init__(self, name, marks):
 #         self.name = name
@@ -3458,6 +3460,22 @@ from random import choice
 #     def average_marks(self):
 #         return round(sum(self.marks) / len(self.marks), 2)
 #
+#     @staticmethod
+#     def dump_to_json(stud, filename):
+#         try:
+#             data = json.load(open(filename))
+#         except FileNotFoundError:
+#             data = []
+#
+#         data.append({"name": stud.name, "marks": stud.marks})
+#         with open(filename, 'w') as f:
+#             json.dump(data, f, indent=2)
+#
+#     @staticmethod
+#     def load_from_file(filename):
+#         with open(filename, 'r') as f:
+#             print(json.load(f))
+#
 #
 # class Group:
 #     def __init__(self, students, group):
@@ -3481,6 +3499,25 @@ from random import choice
 #     def change_group(group1, group2, index):
 #         return group2.add_student(group1.del_student(index))
 #
+#     @staticmethod
+#     def dump_group(file, group):
+#         try:
+#             data = json.load(open(file))
+#         except FileNotFoundError:
+#             data = []
+#
+#         with open(file, 'w') as f:
+#             stud_list = []
+#             for i in group.students:
+#                 stud_list.append([i.name, i.marks])
+#             data.append(stud_list)
+#             json.dump(data, f, indent=2)
+#
+#     @staticmethod
+#     def load_journal(file):
+#         with open(file, 'r') as f:
+#             print(json.load(f))
+#
 #
 # st1 = Student('Bodnya', [5, 4, 3, 4, 5, 3])
 # # print(st1)
@@ -3489,26 +3526,338 @@ from random import choice
 # # st1.del_marks(2)
 # # print(st1)
 # # st1.edit_marks(-1, 5)
+# # Student.dump_to_json(st1, 'student.json')
+# # Student.load_from_file('Student.json')
 # # print(st1)
 # # print(st1.average_marks())
 # st2 = Student('Nikolaenko', [2, 3, 5, 4, 2])
+# # Student.dump_to_json(st2, 'student.json')
+# # Student.load_from_file('Student.json')
 # st3 = Student('Birukov', [2, 3, 5, 4, 2, 5])
+# # Student.dump_to_json(st3, 'student.json')
+# # Student.load_from_file('Student.json')
 # sts = [st1, st2]
 # my_group = Group(sts, 'ГК Python')
+# # # print(my_group)
+# # # print()
+# # my_group.add_student(st3)
+# # # print(my_group)
+# # # print()
+# # my_group.del_student(1)
 # # print(my_group)
 # # print()
-# my_group.add_student(st3)
-# # print(my_group)
-# # print()
-# my_group.del_student(1)
-# print(my_group)
-# print()
-# group22 = [st2]
+# group22 = [st3]
 # my_group2 = Group(group22, 'ГК Web')
-# print(my_group2)
-# print()
-# Group.change_group(my_group, my_group2, 0)
-# print(my_group)
-# print()
-# print(my_group2)
+# Group.dump_group('group.json', my_group)
+# Group.dump_group('group.json', my_group2)
+# Group.load_journal('group.json')
+# # print(my_group2)
+# # print()
+# # Group.change_group(my_group, my_group2, 0)
+# # print(my_group)
+# # print()
+# # print(my_group2)
+
+# ==============================
+# Урок от 31.01.2023
+
+# СОЗДАНИЕ МОДУЛЕЙ
+
+# import requests
+# import json
+#
+#
+# response = requests.get('https://jsonplaceholder.typicode.com/todos')
+# todos = json.loads(response.text)
+#
+# # print(todos[:10])
+# # print(type(todos))
+#
+# todos_by_user = {}
+#
+# for todo in todos:
+#     if todo['completed']:
+#         try:
+#             todos_by_user[todo['userId']] += 1
+#         except KeyError:
+#             todos_by_user[todo['userId']] = 1
+#
+# print(todos_by_user)
+#
+# # сортировка словаря по значению
+# top_users = sorted(todos_by_user.items(), key=lambda x: x[1], reverse=True)
+# print(top_users)
+#
+# max_complete = top_users[0][1]
+# print(max_complete)
+#
+# users = []
+# for user, num_complete in top_users:
+#     if num_complete < max_complete:
+#         break
+#     users.append(str(user))
+#
+# # print(users)
+# max_users = ' and '.join(users)
+#
+# s = "s" if len(users) > 1 else ""
+# print(f"user{s} {max_users} completed {max_complete} TODOs")
+#
+#
+# def keep(todo):
+#     is_complete = todo['completed']
+#     has_max_count = str(todo['userId']) in users
+#     return is_complete and has_max_count    # возвращает True если если оба элемента равны True
+#
+#
+# with open('filtered_data_file.json', 'w') as f:
+#     # Записываем данные в файл если функция 'filter' возвращает значение True
+#     filtered_todos = list(filter(keep, todos))
+#     json.dump(filtered_todos, f, indent=2)
+#
+# with open('filtered_data_file.json', 'r') as f:
+#     data = json.load(f)
+#     print(data)
+
+# ===============================================================
+# ДЗ от 31.01.2023
+# Есть некоторый словарь, который хранит название стран и столиц.
+# Название стран используется в качестве ключа, название столицы в качестве значения.
+# Необходимо реализовать: добавление, удаление, поиск, редактирование и просмотр данных
+# (используя упаковку и распаковку данных)
+#
+# import json
+#
+#
+# class Country:
+#
+#     @staticmethod
+#     def add_data(country, capital):
+#         try:
+#             country_dict = json.load(open('country.json'))
+#         except FileNotFoundError:
+#             country_dict = {}
+#
+#         country_dict[country] = capital
+#         with open('country.json', 'w', encoding='utf-8') as f:
+#             json.dump(country_dict, f, indent=2)
+#
+#     @staticmethod
+#     def remove_data(country):
+#         country_dict = json.load(open('country.json'))
+#         del country_dict[country]
+#
+#         with open('country.json', 'w') as f:
+#             json.dump(country_dict, f, indent=2)
+#
+#     @staticmethod
+#     def search_data(country):
+#         country_dict = json.load(open('country.json'))
+#         print(f'{country}: {country_dict[country]}')
+#
+#     @staticmethod
+#     def edit_data(country, capital):
+#         country_dict = json.load(open('country.json'))
+#         country_dict[country] = capital
+#         with open('country.json', 'w', encoding='utf-8') as f:
+#             json.dump(country_dict, f, indent=2)
+#
+#     @staticmethod
+#     def prev_data():
+#         country_dict = json.load(open('country.json'))
+#         print(country_dict)
+#
+#
+# print('*' * 50)
+# i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n"
+#           "3 - поиск данных\n4 - редактирование данных\n"
+#           "5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+# while i != '6':
+#     c1 = Country()
+#     if i == '1':
+#         country = input("Введите название страны (с заглавной буквы): ")
+#         capital = input("Введите название столицы (с заглавной буквы): ")
+#
+#         c1.add_data(country, capital)
+#         print("Файл сохранен")
+#         print('*' * 50)
+#         i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+#     elif i == '2':
+#         country = input("Введите название страны, которую хотите удалить (с заглавной буквы): ")
+#         c1.remove_data(country)
+#         print("Данные удалены")
+#         print("Файл сохранен")
+#         print('*' * 50)
+#         i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+#     elif i == '3':
+#         country = input("Введите название страны, которую хотите найти (с заглавной буквы): ")
+#         c1.search_data(country)
+#         print('*' * 50)
+#         i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+#     elif i == '4':
+#         country = input("Введите название страны, которую хотите изменить (с заглавной буквы): ")
+#         capital = input("Введите название нового города (с заглавной буквы): ")
+#         c1.edit_data(country, capital)
+#         print("Файл изменен")
+#         print('*' * 50)
+#         i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+#     elif i == '5':
+#         c1.prev_data()
+#         print('*' * 50)
+#         i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+#     else:
+#         print('Вводите пожалуйста только цифры от 1 до 6')
+#         print('*' * 50)
+#         i = input("Выбор действия:\n1 - добавление данных\n2 - удаление данных\n3 - поиск данных\n"
+#                   "4 - редактирование данных\n5 - просмотр данных\n6 - завершение работы\nВвод: ")
+#
+# print('До скорых встреч.')
+
+
+#   ===============================================
+# Урок от 02.02.2023
+
+# csv (Comma Separated Values) - переменные, разделенные запятыми.
+
+# import csv
+
+# with open('data.csv', 'r') as r_file:   # если не указывать второй параметр, то файл откроется в режиме чтения
+#     file_reader = csv.reader(r_file, delimiter=";")   # работа со списком в режиме чтения
+#     count = 0
+#     for row in file_reader:
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {', '.join(row)}")
+#         else:
+#             print(f"    {row[0]} - {row[1]}. Родился в {row[2]} году.")
+#         count += 1
+#
+#     print(f"Всего в файле {count} строки.")
+
+# with open('data1.csv', 'r') as r_file:   # если не указывать второй параметр, то файл откроется в режиме чтения
+# #     f_names = ["Имя", "Профессия", "Год рождения"]
+# #     # параметр fieldnames задает название полей в ручном режиме, если этой инфы нет в файле
+# #     file_reader = csv.DictReader(r_file, delimiter=";", fieldnames=f_names) # работа со словарем в режиме чтения
+# #     count = 0
+# #     for row in file_reader:
+# #         if count == 0:
+# #             print(f"Файл содержит столбцы: {', '.join(row)}")
+# #         print(f"    {row['Имя']} - {row['Профессия']}. Родился в {row['Год рождения']} году.")
+# #         count += 1
+# #
+# #     print(f"Всего в файле {count} строки.")
+
+# with open('student.csv', mode='w') as f:
+#     writer = csv.writer(f, delimiter=';', lineterminator="\r")    # метод для записи
+#     writer.writerow(["Имя", "Класс", "Возраст"])
+#     writer.writerow(["Женя", "9", "15"])
+#     writer.writerow(["Саша", "5", "12"])
+#     writer.writerow(["Маша", "11", "17"])
+
+# data = [['hostname', 'vendor', 'model', 'location'],
+#         ['sw1', 'Cisco', '3750', 'London, Best str'],
+#         ['sw2', 'Cisco', '3850', 'Liverpool, Better str'],
+#         ['sw3', 'Cisco', '3650', 'Liverpool, Better str'],
+#         ['sw4', 'Cisco', '3650', 'London, Best str']]
+#
+# with open('data_sw.csv', 'w') as f:
+#     writer = csv.writer(f, delimiter=';', lineterminator='\r')
+#     # for row in data:
+#     #     writer.writerow(row)
+#     writer.writerows(data)
+#
+# with open('data_sw.csv', 'r') as f:
+#     print(f.read())
+
+
+# Запись данных в файл при помощи словаря
+# with open('stud.csv', 'w') as f:
+#     names = ["Имя", "Возраст"]
+#     file_writer = csv.DictWriter(f, delimiter=';', lineterminator='\r', fieldnames=names)
+#     file_writer.writeheader()   # запись заголовочной строки
+#     file_writer.writerow({"Имя": "Саша", "Возраст": "6"})
+#     file_writer.writerow({"Имя": "Маша", "Возраст": "15"})
+#     file_writer.writerow({"Имя": "Вова", "Возраст": "14"})
+
+# data = [{
+#     'hostname': 'sw1',
+#     'location': 'London',
+#     'model': '3750',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw2',
+#     'location': 'Liverpool',
+#     'model': '3850',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw3',
+#     'location': 'Liverpool',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw4',
+#     'location': 'London',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }]
+#
+# with open("dictwriter.csv", 'w') as f:
+#     writer = csv.DictWriter(f, delimiter=";", lineterminator='\r', fieldnames=(data[0].keys()))
+#     writer.writeheader()
+#     for d in data:
+#         writer.writerow(d)
+
+# ==============================
+# Парсинг
+
+# from bs4 import BeautifulSoup
+#
+#
+# def get_copywriter(tag):
+#     whois = tag.find("div", class_="whois").text.strip()
+#     if "Copywriter" in whois:
+#         return tag
+#     return None
+#
+#
+# f = open('index.html', encoding='utf-8').read()
+# soup = BeautifulSoup(f, "html.parser")
+# copywriter = []
+# row = soup.find_all('div', class_='row')
+# for i in row:
+#     cw = get_copywriter(i)
+#     if cw:
+#         copywriter.append(cw)
+#
+# print(copywriter)
+
+# row = soup.find('div', class_='name').text
+# row = soup.find_all("div", class_='name')
+# for d in row:
+#     print(d.text)
+# print(row)
+
+# row = soup.find_all('div', class_='row')[1].find('div', class_='links') # по индексу можно найти один элемент
+# print(row)
+
+# row = soup.find_all("div", {"data-set": "salary"})  # пользовательские данные с сайта указываются в виде словаря
+# print(row)
+
+# row = soup.find("div", string='Alena').find_parent(class_='row')   # поиск по тексту
+# print(row)
+
+# row = soup.find("div", id="whois3").find_next_sibling() # следующий элемент на одном уровне
+# print(row)
+# row = soup.find("div", id="whois3").find_previous_sibling() # предыдущий элемент на одном уровне
+# print(row)
 
