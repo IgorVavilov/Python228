@@ -3789,6 +3789,8 @@
 #     file_writer.writerow({"Имя": "Маша", "Возраст": "15"})
 #     file_writer.writerow({"Имя": "Вова", "Возраст": "14"})
 
+# import csv
+#
 # data = [{
 #     'hostname': 'sw1',
 #     'location': 'London',
@@ -3812,7 +3814,7 @@
 # }]
 #
 # with open("dictwriter.csv", 'w') as f:
-#     writer = csv.DictWriter(f, delimiter=";", lineterminator='\r', fieldnames=(data[0].keys()))
+#     writer = csv.DictWriter(f, delimiter=";", lineterminator='\r', fieldnames=list(data[0].keys()))
 #     writer.writeheader()
 #     for d in data:
 #         writer.writerow(d)
@@ -3860,4 +3862,214 @@
 # print(row)
 # row = soup.find("div", id="whois3").find_previous_sibling() # предыдущий элемент на одном уровне
 # print(row)
+
+# =============
+
+# import re
+# from bs4 import BeautifulSoup
+#
+#
+# def get_salary(s):
+#     pattern = r"\d+"
+#     # res = re.search(pattern, s).group()   # group() - возвращает объект совпадения (match)
+#     res = re.findall(pattern, s)[0]
+#     print(res)
+#
+#
+# f = open('index.html', encoding='utf-8').read()
+# soup = BeautifulSoup(f, "html.parser")
+#
+# salary = soup.find_all("div", {"data-set": "salary"})
+# for i in salary:
+#     get_salary(i.text)
+#
+# =========================================
+# ДЗ от 02.02.2023
+
+# Считать данные из файла data2.csv
+
+# import csv
+#
+#
+# with open("data2.csv", "r") as f:
+#     file_reader = csv.reader(f, delimiter=";")
+#     for i in file_reader:
+#         print(i)
+
+#==========================================
+# Урок 07.02.2023
+# import csv
+#
+# import requests
+# from bs4 import BeautifulSoup
+# import re
+
+# r = requests.get("https://ru.wordpress.org")
+# print(r.headers)
+# print(r.headers['content-Type'])
+# print(r.content)  # Возвращает содержимое страницы в бинарном виде
+# print(r.text)   # возвращает содержимое страницы в обычном виде
+
+
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml") # lxml - парсер, рекомендуется использовать разработчиками
+#     p1 = soup.find("header", id="masthead").find("p", class_="site-title").text
+#     return p1
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org"
+#     print(get_data(get_html(url)))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# ==========================
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refined(s):
+#     res = re.sub(r"\D+", "", s)
+#     return res
+#
+#
+# def write_csv(data):
+#     with open("plugins.csv", "a") as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'], data['url'], data['rating']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml") # lxml - парсер, рекомендуется использовать разработчиками
+#     p1 = soup.find_all("section", class_="plugin-section")[3]
+#     plugins = p1.find_all("article")
+#
+#     for plugin in plugins:
+#         name = plugin.find("h3").text
+# #       url = plugin.find("h3").find("a")["href"] # выводим ссылку, обращаясь к атрибуту.
+#         url = plugin.find("h3").find("a").get("href") # выдает также верхний результат
+#         rating = plugin.find("span", class_="rating-count").find('a').text
+#         r = refined(rating)
+#         data = {'name': name, "url": url, "rating": r}
+#         write_csv(data)
+#     # return len(plugins)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# ===============================
+# import csv
+#
+# import requests
+# from bs4 import BeautifulSoup
+# import re
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refine_cy(c):
+#     return c.split()[-1]
+#
+#
+# def refine_snippet(s):
+#     return re.sub(r"[🐰✅]", "", s)
+#
+#
+# def write_csv(data):
+#     with open("plugins1.csv", "a") as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'], data['url'], data['snippet'], data['cy']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml") # lxml - парсер, рекомендуется использовать разработчиками
+#     elements = soup.find_all("article", class_="plugin-card")
+#     for el in elements:
+#         try:
+#             name = el.find("h3").text
+#         except ValueError:
+#             name = ""
+#
+#         try:
+#             url = el.find("h3").find("a").get("href")
+#         except ValueError:
+#             url = ""
+#
+#
+#         try:
+#             snippet = el.find("div", class_="entry-excerpt").text.strip()
+#             snippet1 = refine_snippet(snippet)
+#         except ValueError:
+#             snippet1 = ""
+#         # print(snippet1)
+#
+#
+#         try:
+#             c = el.find("span", class_="tested-with").text.strip()
+#             cy = refine_cy(c)
+#         except ValueError:
+#             cy = ""
+#
+#
+#         data = {
+#             'name': name,
+#             'url': url,
+#             'snippet': snippet1,
+#             'cy': cy
+#         }
+#
+#         write_csv(data)
+#
+#
+# def main():
+#     for i in range(12, 13):
+#         url = f"https://ru.wordpress.org/plugins/browse/blocks/page/{i}/"
+#         get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# =========================
+# Урок 09.02.2023
+
+# from parsers import Parsers
+#
+# def main():
+#     pars = Parsers("https://www.ixbt.com/live/index/news", "new.txt")
+#     pars.run()
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# ===============================
+# MVC - Model Controller View
+# Model -
+# View -
+# Controller - Связующее звено между моделью и видом
+
+# создадим папку articles:
+#       project_articles.py
+#       controller.py
+#       view.py
+#       model.py
+
 
