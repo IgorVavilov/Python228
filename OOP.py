@@ -4047,6 +4047,88 @@
 # if __name__ == '__main__':
 #     main()
 
+# =================================
+# дз от 07.02.2023
+# Реализовать парсинг данных из любого интернет ресурса с однотипными данными и сохранить их в формат csv
+
+# import csv
+# import re
+# import requests
+# from bs4 import BeautifulSoup
+#
+#
+# def refined(d):
+#     res = re.sub(r"\D+", "", d)
+#     return res
+#
+#
+# def refined_snippet(s):
+#     return re.sub(r"[\xd7\xf8\xd8\u2033]", "", s)
+#
+#
+# def write_csv(data):
+#     with open("caminfo.csv", "a") as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'], data['url'], data['cod'], data['prev_text'], data["price"]))
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def get_data(html):
+#     s = BeautifulSoup(html, "lxml")
+#     items = s.find_all("div", class_="list_item_wrapp item_wrap item")
+#
+#     for item in items:
+#         try:
+#             name = item.find("div", class_="item-title").text.strip()
+#         except ValueError:
+#             name = ""
+#
+#         try:
+#             url = item.find("div", class_="item-title").find("a")["href"]
+#             url = "https://sv22.ru" + url
+#         except ValueError:
+#             url = ""
+#
+#         try:
+#             cod = item.find("div", class_="item-stock").text.strip()
+#             cod_ref = refined(cod)
+#         except ValueError:
+#             cod_ref = ""
+#
+#         try:
+#             prev_text = item.find("div", class_="preview_text").text.strip()
+#             prev_text_ref = refined_snippet(prev_text)
+#         except ValueError:
+#             prev_text_ref = ""
+#
+#         try:
+#             price = item.find("div", class_="price").text.strip()
+#             price_ref = refined(price)
+#         except ValueError:
+#             price_ref = ""
+#
+#         data = {
+#                 "name": name,
+#                 "url": url,
+#                 "cod": cod_ref,
+#                 "prev_text": prev_text_ref,
+#                 "price": price_ref
+#                 }
+#         write_csv(data)
+#
+#
+# def main():
+#     url = "https://sv22.ru/catalog/323/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
 # =========================
 # Урок 09.02.2023
 
