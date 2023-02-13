@@ -2852,6 +2852,7 @@
 #     @dec
 #     def info(self):
 #         print(f'{self.name} {self.surname}')
+#         print(f'{self.name} {self.surname}')
 #
 #
 # p1  = Person("Vitaliy", "Ivanov")
