@@ -4155,4 +4155,78 @@
 #       view.py
 #       model.py
 
+# ===============================
+# урок 14.02.2023
+# ======== БАЗА ДАННЫХ ==========
+# Реляционная модель данных используется чаще всего
+
+# Столбцы (поля, атрибуты)
+# Строки (записи, кортежи)
+# SQLite
+# *.db, *.db3, *.sqlite, *.sqlite3 - расширения файлов SQLite
+
+
+# import sqlite3
+
+# con = sqlite3.connect('profile.db') # Обязательный метод, для соединения
+# cur = con.cursor()  # Обязательный метод.
+#
+# cur.execute("""
+# """)
+#
+# con.close() # Обязательный метод для закрытия соединения
+
+# нижний код аналогичен вышеуказаному
+# with sqlite3.connect('profile.db') as con:
+#     cur = con.cursor()
+    # cur.execute("""CREATE TABLE IF NOT EXISTS users(
+    # id INTEGER PRIMARY KEY AUTOINCREMENT,
+    # name TEXT NOT NULL,
+    # summa REAL,
+    # data BLOB
+    # )""")
+    # cur.execute("DROP TABLE users")
+
+# ================================
+# Lesson 16.02.2023
+
+import sqlite3
+
+with sqlite3.connect('users.db') as con:
+    cur = con.cursor()
+
+
+    # cur.execute("""
+    #     DROP TABLE person_table
+    #     """)
+
+    # cur.execute("""
+    #     ALTER TABLE person_table
+    #     DROP COLUMN home_address
+    #     """)
+
+    # cur.execute("""
+    #     ALTER TABLE person_table
+    #     RENAME COLUMN address TO home_address;
+    #     """)
+
+    # cur.execute("""
+    #     ALTER TABLE person_table
+    #     ADD COLUMN address TEXT NOT NULL DEFAULT "street"
+    #     """)
+
+    # cur.execute("""
+    # ALTER TABLE person
+    # RENAME TO person_table;
+    # """)
+
+    # cur.execute("""
+    # CREATE TABLE IF NOT EXISTS person(
+    # id INTEGER PRIMARY KEY AUTOINCREMENT,
+    # name TEXT NOT NULL,
+    # phone BLOB NOT NULL DEFAULT '+79090000000',
+    # age INTEGER NOT NULL CHECK(age>15 AND age<70),
+    # email TEXT UNIQUE
+    # )""")
+
 

@@ -1,4 +1,4 @@
-from articles.controller import Controller
+from film_project.controller import Controller
 
 
 def main():

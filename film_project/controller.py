@@ -1,10 +1,10 @@
 from view import UserInterface
-from model import ArticleModel
+from model import MovieModel
 
 
 class Controller:
     def __init__(self):
-        self.article_model = ArticleModel()
+        self.article_model = MovieModel()
         self.user_interface = UserInterface()
 
     def run(self):
