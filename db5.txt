@@ -1,125 +1,125 @@
-Таблица Client:
-INNClient - идентификационный номер клиента (первичный ключ)
-Client – клиент
-Status - место продажи
+РўР°Р±Р»РёС†Р° Client:
+INNClient - РёРґРµРЅС‚РёС„РёРєР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ РєР»РёРµРЅС‚Р° (РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡)
+Client вЂ“ РєР»РёРµРЅС‚
+Status - РјРµСЃС‚Рѕ РїСЂРѕРґР°Р¶Рё
 
-Таблица ClientGoods:
-IDParty – (первичный ключ)
-ID – (внешний ключ)
-INNClient – идентификационный номер клиента (внешний ключ)
-CostUnit – стоимость за единицу 
-Count - количество приобретенного товара
+РўР°Р±Р»РёС†Р° ClientGoods:
+IDParty вЂ“ (РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡)
+ID вЂ“ (РІРЅРµС€РЅРёР№ РєР»СЋС‡)
+INNClient вЂ“ РёРґРµРЅС‚РёС„РёРєР°С†РёРѕРЅРЅС‹Р№ РЅРѕРјРµСЂ РєР»РёРµРЅС‚Р° (РІРЅРµС€РЅРёР№ РєР»СЋС‡)
+CostUnit вЂ“ СЃС‚РѕРёРјРѕСЃС‚СЊ Р·Р° РµРґРёРЅРёС†Сѓ 
+Count - РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРёРѕР±СЂРµС‚РµРЅРЅРѕРіРѕ С‚РѕРІР°СЂР°
 
-Таблица SallerGoods:
-ID – (первичный ключ)
-Code – код товара
-INNSeller – идентификационный код продавца (внешний ключ)
-DateStart – дата
-Goods – товар
-CostUnit – стоимость за единицу
-Count - количество товара на складе
+РўР°Р±Р»РёС†Р° SallerGoods:
+ID вЂ“ (РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡)
+Code вЂ“ РєРѕРґ С‚РѕРІР°СЂР°
+INNSeller вЂ“ РёРґРµРЅС‚РёС„РёРєР°С†РёРѕРЅРЅС‹Р№ РєРѕРґ РїСЂРѕРґР°РІС†Р° (РІРЅРµС€РЅРёР№ РєР»СЋС‡)
+DateStart вЂ“ РґР°С‚Р°
+Goods вЂ“ С‚РѕРІР°СЂ
+CostUnit вЂ“ СЃС‚РѕРёРјРѕСЃС‚СЊ Р·Р° РµРґРёРЅРёС†Сѓ
+Count - РєРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕРІР°СЂР° РЅР° СЃРєР»Р°РґРµ
 
-Таблица Seller:
-INNSeller - идентификационный код продавца (первичный ключ)
-Seller – продавец
-Status - статус
+РўР°Р±Р»РёС†Р° Seller:
+INNSeller - РёРґРµРЅС‚РёС„РёРєР°С†РёРѕРЅРЅС‹Р№ РєРѕРґ РїСЂРѕРґР°РІС†Р° (РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡)
+Seller вЂ“ РїСЂРѕРґР°РІРµС†
+Status - СЃС‚Р°С‚СѓСЃ
 
 
 
-1.	Показать какие продавцы продают какие товары.
+1.	РџРѕРєР°Р·Р°С‚СЊ РєР°РєРёРµ РїСЂРѕРґР°РІС†С‹ РїСЂРѕРґР°СЋС‚ РєР°РєРёРµ С‚РѕРІР°СЂС‹.
 
 SELECT Seller.Seller, SallerGoods.Goods
 FROM Seller, SallerGoods
 WHERE Seller.INNSeller=SallerGoods.INNSeller
 
-2.	Вывести продавцов и клиентов (пары), связанные м/у собой приобретенным товаром.
+2.	Р’С‹РІРµСЃС‚Рё РїСЂРѕРґР°РІС†РѕРІ Рё РєР»РёРµРЅС‚РѕРІ (РїР°СЂС‹), СЃРІСЏР·Р°РЅРЅС‹Рµ Рј/Сѓ СЃРѕР±РѕР№ РїСЂРёРѕР±СЂРµС‚РµРЅРЅС‹Рј С‚РѕРІР°СЂРѕРј.
 
 SELECT c.Client, s.Seller
 FROM Seller s, SallerGoods sg, ClientGoods cg, Client c
 WHERE s.INNSeller=sg.INNSeller AND cg.ID=sg.ID AND c.INNClient=cg.INNClient
 
-3.	Вывести данные о товаре в алфавитном порядке.
+3.	Р’С‹РІРµСЃС‚Рё РґР°РЅРЅС‹Рµ Рѕ С‚РѕРІР°СЂРµ РІ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ.
 
 SELECT sg.Goods, sg.Code, sg.DateStart, sg.CostUnit, sg.Count
 FROM SallerGoods sg
 ORDER BY sg.Goods
 
-4.	Вывести посредников, поставляющих товар для фирмы.
+4.	Р’С‹РІРµСЃС‚Рё РїРѕСЃСЂРµРґРЅРёРєРѕРІ, РїРѕСЃС‚Р°РІР»СЏСЋС‰РёС… С‚РѕРІР°СЂ РґР»СЏ С„РёСЂРјС‹.
 
 SELECT s.Seller, s.Status, s.INNSeller
 FROM Seller s
-WHERE s.Status='посредник'
+WHERE s.Status='РїРѕСЃСЂРµРґРЅРёРє'
 
-5.	Вывести список товара, поставляемого производителями.
+5.	Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє С‚РѕРІР°СЂР°, РїРѕСЃС‚Р°РІР»СЏРµРјРѕРіРѕ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏРјРё.
 
 SELECT sg.ID, sg.Goods, s.Seller, s.Status, sg.INNSeller
 FROM Seller s, SallerGoods sg
-WHERE s.Status='производитель' AND s.INNSeller=sg.INNSeller
+WHERE s.Status='РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ' AND s.INNSeller=sg.INNSeller
 
-6.	На какую сумму было всего куплено каждого товара фирмой.
+6.	РќР° РєР°РєСѓСЋ СЃСѓРјРјСѓ Р±С‹Р»Рѕ РІСЃРµРіРѕ РєСѓРїР»РµРЅРѕ РєР°Р¶РґРѕРіРѕ С‚РѕРІР°СЂР° С„РёСЂРјРѕР№.
 
 SELECT DISTINCT sg.Goods, s.Seller, sg.CostUnit*sg.Count
 FROM Seller s, SallerGoods sg, ClientGoods cg
 WHERE sg.INNSeller=s.INNSeller
 
-7.	На какую сумму было продано каждого товара магазинам.
+7.	РќР° РєР°РєСѓСЋ СЃСѓРјРјСѓ Р±С‹Р»Рѕ РїСЂРѕРґР°РЅРѕ РєР°Р¶РґРѕРіРѕ С‚РѕРІР°СЂР° РјР°РіР°Р·РёРЅР°Рј.
 
 SELECT c.INNClient, c.Client, sg.Goods, cg.CostUnit*cg.Count
 FROM Client c, SallerGoods sg, ClientGoods cg
-WHERE c.INNClient=cg.INNClient AND cg.ID=sg.ID AND c.Status='магазин'
+WHERE c.INNClient=cg.INNClient AND cg.ID=sg.ID AND c.Status='РјР°РіР°Р·РёРЅ'
 ORDER BY c.Client
 
-8.	Выведите список товара, проданного в кафе.
+8.	Р’С‹РІРµРґРёС‚Рµ СЃРїРёСЃРѕРє С‚РѕРІР°СЂР°, РїСЂРѕРґР°РЅРЅРѕРіРѕ РІ РєР°С„Рµ.
 
 SELECT sg.Goods, c.INNClient, c.Client
 FROM Client c, SallerGoods sg, ClientGoods cg
-WHERE c.INNClient=cg.INNClient AND cg.ID=sg.ID AND c.Status='кафе'
+WHERE c.INNClient=cg.INNClient AND cg.ID=sg.ID AND c.Status='РєР°С„Рµ'
 
-9.	Определить какой товар был куплен у посредников.
+9.	РћРїСЂРµРґРµР»РёС‚СЊ РєР°РєРѕР№ С‚РѕРІР°СЂ Р±С‹Р» РєСѓРїР»РµРЅ Сѓ РїРѕСЃСЂРµРґРЅРёРєРѕРІ.
 
 SELECT sg.Goods
 FROM SallerGoods sg, ClientGoods cg, Seller s
-WHERE sg.INNSeller=s.INNSeller AND cg.ID=sg.ID AND s.Status='посредник'
+WHERE sg.INNSeller=s.INNSeller AND cg.ID=sg.ID AND s.Status='РїРѕСЃСЂРµРґРЅРёРє'
 
-10.	Написать запрос, который выводит название товара и прибыль, полученную от его продажи (при продаже всех единиц товара).
+10.	РќР°РїРёСЃР°С‚СЊ Р·Р°РїСЂРѕСЃ, РєРѕС‚РѕСЂС‹Р№ РІС‹РІРѕРґРёС‚ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° Рё РїСЂРёР±С‹Р»СЊ, РїРѕР»СѓС‡РµРЅРЅСѓСЋ РѕС‚ РµРіРѕ РїСЂРѕРґР°Р¶Рё (РїСЂРё РїСЂРѕРґР°Р¶Рµ РІСЃРµС… РµРґРёРЅРёС† С‚РѕРІР°СЂР°).
 
 SELECT DISTINCT sg.Goods, (cg.CostUnit*sg.Count)-(sg.CostUnit*sg.Count)
 FROM Seller s, SallerGoods sg, ClientGoods cg
 WHERE cg.ID=sg.ID
 
 
-11.	 Определите какие клиенты не покупали подсолнечное масло.
+11.	 РћРїСЂРµРґРµР»РёС‚Рµ РєР°РєРёРµ РєР»РёРµРЅС‚С‹ РЅРµ РїРѕРєСѓРїР°Р»Рё РїРѕРґСЃРѕР»РЅРµС‡РЅРѕРµ РјР°СЃР»Рѕ.
 
 SELECT DISTINCT c.Client
 FROM Seller s, SallerGoods sg, ClientGoods cg, Client c
-WHERE cg.ID=sg.ID AND c.INNClient=cg.INNClient AND sg.Goods NOT LIKE 'масло подсолнечное'
+WHERE cg.ID=sg.ID AND c.INNClient=cg.INNClient AND sg.Goods NOT LIKE 'РјР°СЃР»Рѕ РїРѕРґСЃРѕР»РЅРµС‡РЅРѕРµ'
 
-12.	Определите поставщиков, сделки с которыми заключили 10-11/11/2007.
+12.	РћРїСЂРµРґРµР»РёС‚Рµ РїРѕСЃС‚Р°РІС‰РёРєРѕРІ, СЃРґРµР»РєРё СЃ РєРѕС‚РѕСЂС‹РјРё Р·Р°РєР»СЋС‡РёР»Рё 10-11/11/2007.
 
 SELECT s.Seller, sg.DateStart
 FROM Seller s, SallerGoods sg
 WHERE s.INNSeller=sg.INNSeller AND sg.DateStart BETWEEN "2007-11-10" AND "2007-11-12"
 
-13.	Показать код и наименование товара, купленного посредниками.
+13.	РџРѕРєР°Р·Р°С‚СЊ РєРѕРґ Рё РЅР°РёРјРµРЅРѕРІР°РЅРёРµ С‚РѕРІР°СЂР°, РєСѓРїР»РµРЅРЅРѕРіРѕ РїРѕСЃСЂРµРґРЅРёРєР°РјРё.
 
 SELECT DISTINCT sg.Code, sg.Goods, s.Status, s.Seller
 FROM Seller s, SallerGoods sg
-WHERE sg.INNSeller=s.INNSeller AND s.Status='посредник'
+WHERE sg.INNSeller=s.INNSeller AND s.Status='РїРѕСЃСЂРµРґРЅРёРє'
 
-14.	Вывести список клиентов и сумму прибыли за каждый товар, полученную от продажи черного перца.
+14.	Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє РєР»РёРµРЅС‚РѕРІ Рё СЃСѓРјРјСѓ РїСЂРёР±С‹Р»Рё Р·Р° РєР°Р¶РґС‹Р№ С‚РѕРІР°СЂ, РїРѕР»СѓС‡РµРЅРЅСѓСЋ РѕС‚ РїСЂРѕРґР°Р¶Рё С‡РµСЂРЅРѕРіРѕ РїРµСЂС†Р°.
 
 SELECT DISTINCT c.Client, (cg.CostUnit*cg.Count)-(sg.CostUnit*cg.Count)
 FROM SallerGoods sg, ClientGoods cg, Client c
-WHERE cg.ID=sg.ID AND c.INNClient=cg.INNClient AND sg.Goods GLOB 'Перец черный*'
+WHERE cg.ID=sg.ID AND c.INNClient=cg.INNClient AND sg.Goods GLOB 'РџРµСЂРµС† С‡РµСЂРЅС‹Р№*'
 
-15.	 Выведите список товаров в обратном порядке, если товар куплен у производителя и продан в кафе.
+15.	 Р’С‹РІРµРґРёС‚Рµ СЃРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ, РµСЃР»Рё С‚РѕРІР°СЂ РєСѓРїР»РµРЅ Сѓ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЏ Рё РїСЂРѕРґР°РЅ РІ РєР°С„Рµ.
 
 SELECT DISTINCT sg.Goods
 FROM Seller s, SallerGoods sg, ClientGoods cg, Client c
-WHERE cg.ID=sg.ID AND c.INNClient=cg.INNClient AND sg.INNSeller=s.INNSeller AND s.Status='производитель' AND c.Status='кафе'
+WHERE cg.ID=sg.ID AND c.INNClient=cg.INNClient AND sg.INNSeller=s.INNSeller AND s.Status='РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ' AND c.Status='РєР°С„Рµ'
 ORDER BY DESC
 
-16.	Вывести список товаров, если фирма купила их на сумму больше 1000.
+16.	Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ, РµСЃР»Рё С„РёСЂРјР° РєСѓРїРёР»Р° РёС… РЅР° СЃСѓРјРјСѓ Р±РѕР»СЊС€Рµ 1000.
 
 SELECT DISTINCT sg.Goods, sg.CostUnit*sg.Count
 FROM SallerGoods sg
