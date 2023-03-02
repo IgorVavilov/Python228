@@ -3897,7 +3897,7 @@
 #     for i in file_reader:
 #         print(i)
 
-#==========================================
+#   ==========================================
 # Урок 07.02.2023
 # import csv
 #
@@ -4255,4 +4255,155 @@
     # for res in cur:
     #     print(res)
 
+# ============================================
+# Урок от 28.02.2023
+
+import sqlite3 as sq
+
+# cars = [
+#     ('BMW', 54000),
+#     ('Chevrolet', 56000),
+#     ('Daewoo', 38000),
+#     ('Citroen', 29000),
+#     ('Honda', 33000)
+#
+# ]
+#
+# with sqlite3.connect('cars.db') as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     )
+#     """)
+#
+#     cur.executescript("""
+#     DELETE FROM cars WHERE model LIKE 'B%';
+#     UPDATE cars SET price = price + 100;
+#     """)
+
+    # cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {'Price': 0})
+
+    # cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", cars)
+
+    # for car in cars:
+    #     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
+
+    # cur.execute("INSERT INTO cars VALUES(1, 'Renault', 20000)")
+    # cur.execute("INSERT INTO cars VALUES(2, 'Nissan', 15000)")
+    # cur.execute("INSERT INTO cars VALUES(3, 'Mercedec', 30000)")
+    # cur.execute("INSERT INTO cars VALUES(4, 'Volvo', 25000)")
+    # cur.execute("INSERT INTO cars VALUES(5, 'Audi', 52000)")
+
+# con.commit()
+# con.close()
+
+# ============= ВАРИАНТ TRY EXEPT ==================
+# con = None
+# try:
+#     con = sq.connect('cars.db')  # соединение с базой данных
+#     cur = con.cursor()  # создаем объект курсора
+#     cur.executescript("""
+#         CREATE TABLE IF NOT EXISTS cars(
+#             car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             model TEXT,
+#             price INTEGER
+#         );
+#         BEGIN;
+#         INSERT INTO cars VALUES(NULL, 'Renault', 20000);
+#         UPDATE cars SET price = price + 100;
+#         """)
+#     # BEGIN - метка к которой возвращаемся при возникновении ошибки в процессе выполнения
+#     con.commit()    # производит сохранение в базе данных
+# except sq.Error as e:
+#     if con:
+#         con.rollback()
+#     print(f'Ошибка выполнения запроса {e}')
+# finally:
+#     if con:
+#         con.close()     # закрытие соединения
+
+# =============================
+# with sq.connect('cars.db') as con:
+#     con.row_factory = sq.Row # для работы с данными БД, как со словарем
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     )
+#     """)
+#
+#     cur.execute("SELECT model, price FROM cars")
+
+    # rows = cur.fetchall()
+    # rows = cur.fetchone()
+    # rows = cur.fetchmany(5)
+    # print(rows)
+
+    # for res in cur:
+    #     print(res)
+
+    # for res in cur:
+    #     print(res['model'], res['price'])   # при использовании конструкции con.row_factory = sq.Row
+
+# ======= СОХРАНЕНИЕ изображения в БД =============
+
+#
+# def read_ava(n):
+#     try:
+#         with open(f"avatars/{n}.png", "rb") as f:
+#             return f.read()
+#     except IOError as e:
+#         print(e)
+#         return False
+#
+#
+# with sq.connect('cars.db') as con:
+#     con.row_factory = sq.Row # для работы с данными БД, как со словарем
+#     cur = con.cursor()
+#
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS users(
+#         user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         ava BLOB
+#     );
+#     """)
+#
+#     img = read_ava(1)
+#     if img:
+#         binary = sq.Binary(img)
+#         cur.execute("INSERT INTO users VALUES (?, ?)", (2, binary))
+
+# =========== СОХРАНЕНИЕ/ВОССТАНОВЛЕНИЕ запросов SQL в документ ================
+# ========== DUMP бызы данных =======================
+
+with sq.connect('cars.db') as con:
+    cur = con.cursor()
+
+    # with open('sql_dump.sql', 'w') as f:
+    #     for sql in con.iterdump():    # iterdump - метод SQLite3 для создания ДАМПА
+    #         f.write(sql)
+
+# Восстановление БД
+    with open('sql_dump.sql', 'r') as f:
+        sql = f.read()
+        cur.executescript(sql)
+
+# ===========================================================
+
+# direction = input('Введите направление (шифрование, дешифрование): ')
+# lang = input('Введите язык ввода (русский, английский): ')
+# step = input('Введите шаг сдвига: ')
+# text = input('Введите текст (либо "q" для выхода): ')
+#
+# alphabet_rus = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+# alphabet_eng = 'qwertyuiopasdfghjklzxcvbnm'
+#
+# while text != "q":
+#     if lang == "русский":
+#         text_list = text.split()
 
