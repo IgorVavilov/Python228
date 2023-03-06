@@ -1,0 +1,9 @@
+{% include 'header.html' ignore missing %}
+
+    <ul>
+        {% for u in users -%}
+        <li>{{ u.name }}</li>
+        {% endfor %}
+    </ul>
+
+{% include 'footer.html' %}

@@ -4258,7 +4258,7 @@
 # ============================================
 # Урок от 28.02.2023
 
-import sqlite3 as sq
+# import sqlite3 as sq
 
 # cars = [
 #     ('BMW', 54000),
@@ -4381,17 +4381,231 @@ import sqlite3 as sq
 # =========== СОХРАНЕНИЕ/ВОССТАНОВЛЕНИЕ запросов SQL в документ ================
 # ========== DUMP бызы данных =======================
 
-with sq.connect('cars.db') as con:
-    cur = con.cursor()
+# with sq.connect('cars.db') as con:
+#     cur = con.cursor()
+#
+#     # with open('sql_dump.sql', 'w') as f:
+#     #     for sql in con.iterdump():    # iterdump - метод SQLite3 для создания ДАМПА
+#     #         f.write(sql)
+#
+# # Восстановление БД
+#     with open('sql_dump.sql', 'r') as f:
+#         sql = f.read()
+#         cur.executescript(sql)
 
-    # with open('sql_dump.sql', 'w') as f:
-    #     for sql in con.iterdump():    # iterdump - метод SQLite3 для создания ДАМПА
-    #         f.write(sql)
+# ==================================
+# ========== Урок от 01.03.2023 ==========
+# === ШАБЛОНИЗАТОР ===
 
-# Восстановление БД
-    with open('sql_dump.sql', 'r') as f:
-        sql = f.read()
-        cur.executescript(sql)
+# {{ }} - Выражение для вставки конструкции Phyton в шаблон
+# {% %} - спецификатор шаблона
+# {# #} - блок комментариев
+# ## - строковый комментарий
+
+# from jinja2 import Template
+
+# name = 'Игорь'
+# age = 28
+# tm = Template("Мне {{ a }} лет. Меня зовут {{ n.upper() }} ")
+# msg = tm.render(n=name, a=age)
+
+# per = {'name': 'Игорь', 'age': 28}
+# tm = Template("Мне {{ p.age }} лет. Меня зовут {{ p['name'].upper() }} ")
+# msg = tm.render(p=per)
+
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.__name = name
+#         self.__age = age
+#
+#     def get_name(self):
+#         return self.__name
+#
+#     def get_age(self):
+#         return self.__age
+#
+#
+# per = Person("Игорь", 26)
+#
+# tm = Template("Мне {{ p.get_age() }} лет. Меня зовут {{ p.get_name().upper() }} ")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# =====================
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Смоленск'},
+#     {'id': 3, 'city': 'Минск'},
+#     {'id': 4, 'city': 'Ярославль'},
+#     {'id': 5, 'city': 'Уфа'},
+# ]
+#
+# # символ '-' убирает лишние пробелы
+# link = """
+# <select name="cities">
+# {% for c in cities -%}
+# {% if c.id > 3 -%}
+#     <option value="{{c.id}}">{{ c['city'] }}</option>
+# {% elif c.city=='Москва' -%}
+#     <option>{{ c['city'] }}</option>
+# {% else -%}
+#     {{ c['city'] }}
+# {% endif -%}
+# {% endfor -%}
+# </select>
+# """
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
+
+# ===================================
+# Выведите список из пунктов меню и ссылок. Представьте, что активный пункт - Главная (добавить к нему class="active")
+# menu = [
+#     {'id': 1, 'href': '/index', 'title': 'Главная'},
+#     {'id': 2, 'href': '/news', 'title': 'Новости'},
+#     {'id': 3, 'href': '/about', 'title': 'О компании'},
+#     {'id': 4, 'href': '/shop', 'title': 'Магазин'},
+#     {'id': 5, 'href': '/contacts', 'title': 'Контакты'},
+# ]
+#
+# link = """
+# <ul>
+# {% for c in menu -%}
+# {% if c.title=='Главная' %}
+#     <li><a href='{{ c.href }}' class='active'>{{c.title}}</li>
+# {% endfor -%}
+# </ul>
+# """
+# tm = Template(link)
+# msg = tm.render(menu=menu)
+#
+# print(msg)
+
+# ===============
+
+# cars = [
+#     {'model': 'Audi', 'price': 23000},
+#     {'model': 'Skoda', 'price': 17300},
+#     {'model': 'Renault', 'price': 44300},
+#     {'model': 'Wolksvagen', 'price': 21300}
+# ]
+#
+# # tp1 = "Суммарная цена автомобилей {{ cs | sum(attribute='price') }}"
+# # tp1 = "Суммарная цена автомобилей {{ cs | max(attribute='price') }}"
+# # tp1 = "Суммарная цена автомобилей {{ (cs | max(attribute='price')).model }}"
+# # tp1 = "Суммарная цена автомобилей {{ cs | random }}"
+# # tp1 = "Суммарная цена автомобилей {{ cs | replace('model', 'brand') }}"
+# tm = Template(tp1)
+# msg = tm.render(cs=cars)
+# print(msg)
+
+# ============================
+# +++ МАКРООПРЕДЕЛЕНИЯ (ФУНКЦИИ) +++
+
+# html = """
+# {% macro input(name, value='', type='text', size=20) %}
+#     <input type='{{ type }}' name='{{ name }}' value='{{ value }}' size={{ size }}>
+# {% endmacro %}
+#
+# <p>{{ input('username') }}</p>
+# <p>{{ input('email') }}</p>
+# <p>{{ input('password', type='password') }}</p>
+# """
+#
+# tm = Template(html)
+# msg = tm.render()
+# print(msg)
+
+# =====================================
+# Создайте макроопределение для шаблона полей ввода input в шаблоне html - документа по образцу:
+
+# html = """
+# {%- macro func(name, type='text', placeholder='text') -%}
+#     <input type='{{ type }}' name='{{ name }}' placeholder='{{ placeholder }}'>
+# {%- endmacro %}
+#
+# <p>{{ func('firstname', placeholder='Имя')}}</p>
+# <p>{{ func('lastname', placeholder='Фамилия')}}</p>
+# <p>{{ func('address', placeholder='Адрес')}}</p>
+# <p>{{ func('phone', 'tel', placeholder='Телефон')}}</p>
+# <p>{{ func('email', 'email', placeholder='Почта')}}</p>
+# """
+#
+# tm = Template(html)
+# msg = tm.render()
+# print(msg)
+
+# =========================================
+
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 75.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 33, "weight": 94.0}
+# ]
+#
+# html = """
+# {% macro list_users(list_of_users) -%}
+# <ul>
+# {% for u in list_of_users -%}
+#     <li>{{ u.name }} {{ caller(u) }}</li>
+# {% endfor -%}
+# </ul>
+# {% endmacro %}
+#
+# {% call(user) list_users(users) %}
+#     <ul>
+#         <li>{{ user.year}}</li>
+#         <li>{{ user.weight}}</li>
+#     </ul>
+# {% endcall %}
+# """
+#
+# tm = Template(html)
+# msg = tm.render(users=persons)
+# print(msg)
+
+# =====================================================
+# from jinja2 import Environment, FileSystemLoader
+#
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 75.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 33, "weight": 94.0}
+# ]
+#
+# file_loader = FileSystemLoader('templates')
+# env = Environment(loader=file_loader)
+#
+# tm = env.get_template('main.html')
+# msg = tm.render(users=persons, title='About Jinja')
+#
+# print(msg)
+
+# ==================================================
+# ===== ДЗ от 02.03.2023 =====
+
+from jinja2 import Environment, FileSystemLoader
+
+head_1 = 'Страница с домашним заданием'
+par_text = 'Домашнее задание выполнено'
+
+persons = [
+    {"name": "Алексей", "year": 18, "weight": 75.5},
+    {"name": "Никита", "year": 28, "weight": 82.3},
+    {"name": "Виталий", "year": 33, "weight": 94.0}
+]
+
+file_loader = FileSystemLoader('templates_DZ')
+env = Environment(loader=file_loader)
+
+tm = env.get_template('main.html')
+msg = tm.render(users=persons, title='Домашнее задание', head_1=head_1, par_text=par_text)
+
+print(msg)
 
 # ===========================================================
 
