@@ -4588,10 +4588,29 @@
 # ==================================================
 # ===== ДЗ от 02.03.2023 =====
 
-from jinja2 import Environment, FileSystemLoader
+# from jinja2 import Environment, FileSystemLoader
+#
+# head_1 = 'Страница с домашним заданием'
+# par_text = 'Домашнее задание выполнено'
+#
+# persons = [
+#     {"name": "Алексей", "year": 18, "weight": 75.5},
+#     {"name": "Никита", "year": 28, "weight": 82.3},
+#     {"name": "Виталий", "year": 33, "weight": 94.0}
+# ]
+#
+# file_loader = FileSystemLoader('templates_DZ')
+# env = Environment(loader=file_loader)
+#
+# tm = env.get_template('main.html')
+# msg = tm.render(users=persons, title='Домашнее задание', head_1=head_1, par_text=par_text)
+#
+# print(msg)
 
-head_1 = 'Страница с домашним заданием'
-par_text = 'Домашнее задание выполнено'
+# =========================================================
+# === Урок от 07.03.2023 ===
+
+from jinja2 import Environment, FileSystemLoader
 
 persons = [
     {"name": "Алексей", "year": 18, "weight": 75.5},
@@ -4599,13 +4618,21 @@ persons = [
     {"name": "Виталий", "year": 33, "weight": 94.0}
 ]
 
-file_loader = FileSystemLoader('templates_DZ')
+subs = ['Культура', 'Наука', 'Политика', 'Спорт']
+
+file_loader = FileSystemLoader('templates')
 env = Environment(loader=file_loader)
 
-tm = env.get_template('main.html')
-msg = tm.render(users=persons, title='Домашнее задание', head_1=head_1, par_text=par_text)
+tm = env.get_template('about.html')
+msg = tm.render(list_table=subs)
 
 print(msg)
+
+# ===========================================
+# ====== FLASK ======
+# ================================
+
+
 
 # ===========================================================
 
@@ -4615,9 +4642,21 @@ print(msg)
 # text = input('Введите текст (либо "q" для выхода): ')
 #
 # alphabet_rus = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-# alphabet_eng = 'qwertyuiopasdfghjklzxcvbnm'
+# alphabet_eng = 'abcdefghijtklmnopqrstuyvxwz'
 #
+# text_list = []
+# text_list_new = []
 # while text != "q":
 #     if lang == "русский":
-#         text_list = text.split()
+#         text_list = text.upper().split()
+#         print(text_list)
+#     for item in text_list:
+#         for i in item:
+#             if i in alphabet_rus:
+#                 # j = alphabet_rus.index(i) + int(step)
+#
+#                 print(alphabet_rus.index(i))
+#
+#
+#     text = input('Введите текст (либо "q" для выхода): ')
 
