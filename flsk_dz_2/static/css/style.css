@@ -1,0 +1,122 @@
+
+
+body{
+    font-family: 300 14px/21px 'Roboto', 'sans-serif';
+    color: #696e6e;
+    background: #fafbfb;
+    letter-spacing: 0.1px;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.menu{
+	display: flex;
+    justify-content: space-around;
+    list-style: none;
+    background: #232830;
+    padding: 20px;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.content{
+	margin: 0 auto;
+	max-width: 1200px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.content h1{
+    text-align: center;
+}
+
+.flash{
+	padding: 10px;
+}
+
+.flash.success{
+	border: 1px solid #21BD56;
+	background: #AEFFC5;
+}
+
+.flash.error{
+	border: 1px solid #FF4343;
+	background: #ffb3b7
+}
+
+.menu a{
+    font-weight: bold;
+    color: white;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+p>a{
+    text-decoration: none;
+    color: white;
+}
+
+.post_block{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	margin-bottom: 60px;
+
+}
+
+li>p, li div{
+	width: 300px;
+	padding: 20px;
+	box-sizing: border-box;
+    border: 1px solid #CCC;
+    padding: 10px 20px
+
+}
+
+p.title{
+    margin: 0;
+    font-weight: bold;
+    background: #232830;
+    color: white;
+    text-align: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+p.title a{
+    display: block;
+}
+
+p.btn:hover{
+    background: orange;
+}
+
+.price{
+    text-align:center;
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+}
+
+.btn{
+    margin-top: 60;
+    margin-bottom: 60;
+    font-weight: bold;
+    background: #232830;
+    font-size: 22px;
+    color: white;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.anonce{
+    text-align: center;
+    margin-top: -1px;
+    margin-bottom: 40px;
+    background: #FFF;
+    border-radius: 0px 0px 5px 5px;
+}

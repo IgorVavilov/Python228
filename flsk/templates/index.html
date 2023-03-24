@@ -10,7 +10,7 @@
         <p class="title">
             <a href="{{ url_for('show_post', id_post=p.id) }}">{{ p.title }}</a>
         </p>
-        <dif class="anonce">{{ p.text[:50] }}</dif>
+        <div class="anonce">{{ p.text[:50] }}</div>
     </li>
     {% endfor %}
 </ul>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{super()}}
+<hr>
+
+<ul class="post_block">
+    {% for p in posts %}
+
+    <li>
+        <p class="title">
+            {{ p.title }}
+        </p>
+
+        <div class="anonce">
+            <p class="price">{{ p.price }} руб/мес</p>
+            <p>{{ p.text }}</p>
+            <p class="btn"><a href="{{ url_for('show_post', id_post=p.id) }}">Купить</a></p>
+        </div>
+    </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock%}

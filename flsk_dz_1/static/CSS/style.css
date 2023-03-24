@@ -1,7 +1,7 @@
 body{
     font-family: 300 14px/21px 'Roboto', 'sans-serif';
     color: #696e6e;
-    background:#fafbfb;
+    background: #fafbfb;
     letter-spacing: 0.1px;
     background-attachment: fixed;
     margin: 0;
@@ -13,7 +13,6 @@ body{
     justify-content: space-around;
     list-style: none;
     background: #232830;
-    
     padding: 20px;
     margin-top: 0;
     font-weight: 500;
