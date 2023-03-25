@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Описание программы</title>
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1>Описание</h1>
+    <ul class="description">
+        <li>Выберите длину пароля</li>
+        <li>Для включения в пароль букв верхнего регистра, необходимо выбрать соответствующий пункт.</li>
+        <li>Для включения в пароль цифр, необходимо выбрать соответствующий пункт.</li>
+        <li>Для включения в пароль специальных символов, необходимо выбрать соответствующий пункт.</li>
+    </ul>
+    <p><a href="{% url 'home' %}">Вернуться на главную</a></p>
+</div>
+</body>
+</html>
