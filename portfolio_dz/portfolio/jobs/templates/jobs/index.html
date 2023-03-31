@@ -1,0 +1,21 @@
+{% extends 'jobs/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Мои работы</h1>
+
+<div class="block">
+    {% for job in jobs %}
+    <div class="element">
+        <div>
+            <img src="{{ job.image.url }}" alt="">
+        </div>
+        <div class="text">
+            <h2><a href="{{ job.url }}" target=_blank>{{ job.title }}</a></h2>
+            <p>{{ job.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

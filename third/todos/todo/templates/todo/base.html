@@ -1,10 +1,40 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+{% if user.is_authenticated %}
+<div class="menu">
+    <div class="wrap">
+        <ul>
+            <li class="logo">Пользователь: {{ user.username }}</li>
+            <li><a href="{% url 'createtodo' %}">Создать</a></li>
+            <li><a href="{% url 'currenttodos' %}">Актуальные</a></li>
+            <li><a href="{% url 'completedtodos' %}">Выполненные</a></li>
+            <li>
+                <form action="{% url 'logoutuser' %}" method="post">
+                    {% csrf_token %}
+                    <button class="top">Выйти</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+{% else %}
+<div class="menu">
+    <div class="wrap">
+        <ul>
+            <li class="logo"><a href="{% url 'home' %}">UpService</a></li>
+            <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
+            <li><a href="{% url 'loginuser' %}">Войти</a></li>
+        </ul>
+    </div>
+</div>
+{% endif %}
 <div class="content">
     <div class="wrap">
         {% block content %}
