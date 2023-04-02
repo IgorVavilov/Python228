@@ -66,8 +66,12 @@ body{
 
 
 .top{
-	background:#663366;
-	margin: 0;
+	padding: 4px 5px;
+	margin-top: 0;
+	background: transparent;
+	border: none;
+	color: #FFF;
+	font-size: 20px;
 }
 
 .top a{
@@ -105,6 +109,11 @@ body{
 	justify-content: space-between;
 	align-items: center;
 
+}
+
+.menu .logo{
+	margin-right: 10%;
+	color: #FFF;
 }
 
 .menu a{

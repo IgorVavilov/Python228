@@ -22,6 +22,9 @@ from jobs import views
 urlpatterns = [
     path('', views.index, name='index'),
     path("admin/", admin.site.urls),
+    path('signup/', views.signupuser, name='signupuser'),
+    path('login/', views.loginuser, name='loginuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
