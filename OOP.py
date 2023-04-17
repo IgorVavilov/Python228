@@ -4427,7 +4427,6 @@
 #
 #
 # per = Person("Игорь", 26)
-#
 # tm = Template("Мне {{ p.get_age() }} лет. Меня зовут {{ p.get_name().upper() }} ")
 # msg = tm.render(p=per)
 #
