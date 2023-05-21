@@ -102,3 +102,39 @@ a:hover{
 .post{
     font-size: 16px;
 }
+.form-input{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+button{
+    background: #264b5d;
+    color: #FFF;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+form label{
+    font-size: 18px;
+}
+
+.list-pages{
+    display: flex;
+    justify-content: center;
+}
+.list-pages .page-num-selected{
+    background: #81d4fa;
+    padding: 20px;
+}
+.list-pages a{
+    background: #264b5d;
+    padding: 20px;
+    display: block;
+    color: #FFF;
+}
+.page-num{
+    margin: 6px;
+    font-weight: bold;
+}

@@ -27,13 +27,35 @@
                     {% else %}
                     <li><a href="{% url 'index' %}">Все категории</a></li>
                     {% endif %}
-                    {% show_categories cat_selected=cat_selected %}
+
+                    {% for c in cats %}
+                        {% if c.blog__count > 0 %}
+                            {% if c.pk == cat_selected %}
+                            <li class="selected">{{ c.name }}</li>
+                            {% else %}
+                            <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
             <div class="main">
-            {% block content %}
+                {% block content %}
 
-            {% endblock %}
+                {% endblock %}
+                <div>
+                    <ul class="list-pages">
+                        {% for p in paginator.page_range %}
+                            {% if page_obj.number == p %}
+                            <li class="page-num page-num-selected">{{ p }}</li>
+                            {% else %}
+                            <li class="page-num">
+                                <a href="?page={{ p }}">{{ p }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

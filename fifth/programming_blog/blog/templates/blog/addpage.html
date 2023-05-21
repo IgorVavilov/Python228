@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<form action="{% url 'add_page' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-error">{{ form.non_field_error }}</div>
+    {{ form.as_p }}
+    <button>Добавить</button>
+
+</form>
+
+{% endblock %}
